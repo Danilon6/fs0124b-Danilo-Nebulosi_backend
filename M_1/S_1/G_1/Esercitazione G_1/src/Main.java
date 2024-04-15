@@ -68,7 +68,6 @@ public class Main {
 
 
 
-
     //METODI DI INPUT
     public static String input(String prompt) {
         Scanner sc = new Scanner(System.in);
