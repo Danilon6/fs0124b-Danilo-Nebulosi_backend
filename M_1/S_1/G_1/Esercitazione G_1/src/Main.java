@@ -36,11 +36,38 @@ public class Main {
     }
 
 
-    //ESERCIZIO 3
-
-    public static float perimetroRettangolo(float l1, float l2){
+    //ESERCIZIO 3.1
+    public static double perimetroRettangolo(){
+        double l1 = inputDouble("Inserisci l'altezza del rettangolo");
+        double l2 = inputDouble("Inserisci la lunghezza della base del rettangolo");
         return (l1*2) + (l2 *2);
     }
+
+    //ESERCIZIO 3.2
+    public static int pariDispari(){
+        int a = inputInteger("Inserisic un numero per verifcare se è pari o dispari");
+        if (a % 2 == 0) {
+            return 0;
+        } else {
+            return 1;
+        }
+    }
+
+    //ESERCIZIO 3.3
+    public static double perimetroTriangolo(){
+        double l1 = inputDouble("Inserisci il lato di un trinagolo per calcolarne l'area");
+        double l2 = inputDouble("Inserisci il lato di un trinagolo per calcolarne l'area");
+        double l3 = inputDouble("Inserisci il lato di un trinagolo per calcolarne l'area");
+
+        double semiP = (l1+l2+l3)/2;
+        double area = Math.sqrt((semiP) * (semiP -l1) * (semiP -l2) * (semiP -l3));
+        return area;
+    }
+
+
+
+
+
 
     //METODI DI INPUT
     public static String input(String prompt) {
@@ -84,9 +111,14 @@ public class Main {
         // ESERCIZIO 2
         System.out.println(concatenamentoDiTreStringhe());
 
-        // ESERCIZIO 3
-        System.out.println(perimetroRettangolo(10.5f, 5.5f));
+        // ESERCIZIO 3.1
+        System.out.println(perimetroRettangolo());
 
+        // ESERCIZIO 3.2
+        System.out.println(pariDispari());
+
+        // ESERCIZIO 3.2
+        System.out.println(perimetroTriangolo());
 
     }
 
