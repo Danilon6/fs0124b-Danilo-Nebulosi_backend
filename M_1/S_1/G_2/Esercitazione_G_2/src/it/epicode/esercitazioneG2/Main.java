@@ -1,7 +1,6 @@
 package it.epicode.esercitazioneG2;
 
 import java.util.Arrays;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
@@ -19,21 +18,24 @@ public class Main {
     }
 
     //ESERCIZIO 2
-    public static String printNumber(int number){
+    public static void printNumber(int number){
         if (number >= 0 && number <= 3){
 
             switch (number) {
                 case 0:
-                    return "zero";
+                    System.out.println("zero");
+                    break;
                 case 1:
-                    return "uno";
+                    System.out.println("uno");
+                    break;
                 case 2:
-                    return "due";
+                    System.out.println("due");
+                    break;
                 case 3:
-                    return "tre";
+                    System.out.println("tre");
+                    break;
             }
         }
-        return "errore";
 
     }
 
@@ -75,7 +77,7 @@ public class Main {
         System.out.println(stringaPariDispari("ciao"));
         System.out.println(annoBisestile(2024));
         convertString("Inserisci una stringa");
-        System.out.println(printNumber(4));
+        printNumber(4);
         countdown();
 
 
