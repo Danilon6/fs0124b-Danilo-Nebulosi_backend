@@ -13,14 +13,15 @@ public class Carrello {
 
     public void setTotaleCostoArticoli() {
         for (int i = 0; i < this.elencoArticoli.size(); i++) {
-            long costoArticolo = elencoArticoli.get(i).getPrezzo();
-            this.totaleCostoArticoli += costoArticolo;
+            this.totaleCostoArticoli += elencoArticoli.get(i).getPrezzo();
         }
     }
 
-    public ArrayList<Articolo> getElencoArticoli() {
+    public void getElencoArticoli() {
 
-        return elencoArticoli;
+        for (int i = 0; i < this.elencoArticoli.size(); i++) {
+            System.out.println(elencoArticoli.get(i).getDescrizioneArticolo());
+        }
     }
 
     public void setElencoArticoli(Articolo articolo) {
@@ -42,10 +43,5 @@ public class Carrello {
         this.totaleCostoArticoli = 0;
     }
 
-    public void stampaArticoli(){
-        for (int i = 0; i < this.elencoArticoli.size(); i++) {
-            System.out.println(elencoArticoli.get(i).getDescrizioneArticolo());
-        }
-    }
 
 }

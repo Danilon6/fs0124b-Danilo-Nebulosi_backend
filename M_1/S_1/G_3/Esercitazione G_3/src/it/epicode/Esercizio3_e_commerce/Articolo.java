@@ -1,6 +1,13 @@
 package it.epicode.Esercizio3_e_commerce;
 
 public class Articolo {
+
+    private int codiceArticolo;
+    private String descrizioneArticolo;
+    private int prezzo;
+    private int pezziDisponibili;
+
+
     public String getDescrizioneArticolo() {
         return descrizioneArticolo;
     }
@@ -33,10 +40,7 @@ public class Articolo {
         this.descrizioneArticolo = descrizioneArticolo;
     }
 
-    private int codiceArticolo;
-    private String descrizioneArticolo;
-    private int prezzo;
-    private int pezziDisponibili;
+
 
 
     public Articolo(int a, String b, int c, int d ){

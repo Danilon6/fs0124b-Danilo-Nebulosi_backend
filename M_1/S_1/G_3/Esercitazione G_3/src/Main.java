@@ -35,6 +35,7 @@ public class Main {
         Chiamata c2 = new Chiamata(339962590L, 30);
         sim1.setChiamateRecenti(c1);
         sim1.setChiamateRecenti(c2);
+        sim1.getChiamateRecenti();
         sim1.stampaDati();
 
 
@@ -47,6 +48,6 @@ public class Main {
         carrello.setElencoArticoli(tastiera);
         carrello.setTotaleCostoArticoli();
         System.out.println(carrello.getTotaleCostoArticoli());
-        carrello.stampaArticoli();
+        carrello.getElencoArticoli();
     }
 }

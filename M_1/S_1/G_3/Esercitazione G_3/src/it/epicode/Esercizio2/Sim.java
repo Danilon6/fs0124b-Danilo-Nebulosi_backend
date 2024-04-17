@@ -3,6 +3,10 @@ package it.epicode.Esercizio2;
 import java.util.ArrayList;
 
 public class Sim {
+    private long numeroDiTelefono;
+    private int creditoResiduo;
+    private ArrayList<Chiamata> chiamateRecenti;
+
     public long getNumeroDiTelefono() {
         return numeroDiTelefono;
     }
@@ -11,27 +15,28 @@ public class Sim {
         this.numeroDiTelefono = numeroDiTelefono;
     }
 
-    private long numeroDiTelefono;
-
-    public int getCreditoResiduo() {
-        return creditoResiduo;
-    }
 
     public void setCreditoResiduo(int creditoResiduo) {
         this.creditoResiduo = creditoResiduo;
     }
 
-    private int creditoResiduo;
-
-    public ArrayList<Chiamata> getChiamateRecenti() {
-        return chiamateRecenti;
+    public int getCreditoResiduo() {
+        return creditoResiduo;
     }
 
     public void setChiamateRecenti(Chiamata chiamata) {
         chiamateRecenti.add(chiamata);
     }
 
-    private ArrayList<Chiamata> chiamateRecenti;
+    public void getChiamateRecenti() {
+        for (int i = 0; i < chiamateRecenti.size(); i++) {
+            long numero = chiamateRecenti.get(i).getNumeroDiTelefono();
+            int durata = chiamateRecenti.get(i).getDurata();
+            System.out.println("la chiamata al numero:" + numero + " è durata: " + durata + " minuti");
+        }
+    }
+
+
 
     public Sim(long a){
         this.numeroDiTelefono = a;
@@ -42,11 +47,7 @@ public class Sim {
     public void stampaDati(){
         System.out.println("Il numero di telefono della tua sim è : "+  this.numeroDiTelefono);
         System.out.println("Il credito residuo della tua sim è : "+  this.creditoResiduo);
-        for (int i = 0; i < chiamateRecenti.size(); i++) {
-            long numero = chiamateRecenti.get(i).getNumeroDiTelefono();
-            int durata = chiamateRecenti.get(i).getDurata();
-            System.out.println("la chiamata al numero:" + numero + " è durata: " + durata + " minuti");
-        }
+
     }
 
 }
