@@ -46,7 +46,6 @@ public class Main {
         Carrello carrello = new Carrello(cliente1);
         carrello.setElencoArticoli(mouse);
         carrello.setElencoArticoli(tastiera);
-        carrello.setTotaleCostoArticoli();
         System.out.println(carrello.getTotaleCostoArticoli());
         carrello.getElencoArticoli();
     }

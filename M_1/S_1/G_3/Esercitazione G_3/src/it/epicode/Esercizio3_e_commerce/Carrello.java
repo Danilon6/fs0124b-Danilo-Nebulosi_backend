@@ -11,11 +11,6 @@ public class Carrello {
         return totaleCostoArticoli;
     }
 
-    public void setTotaleCostoArticoli() {
-        for (int i = 0; i < this.elencoArticoli.size(); i++) {
-            this.totaleCostoArticoli += elencoArticoli.get(i).getPrezzo();
-        }
-    }
 
     public void getElencoArticoli() {
 
@@ -26,7 +21,7 @@ public class Carrello {
 
     public void setElencoArticoli(Articolo articolo) {
         this.elencoArticoli.add(articolo);
-
+        this.totaleCostoArticoli += articolo.getPrezzo();
     }
 
     public Cliente getCliente() {
