@@ -28,17 +28,6 @@ implements TurnoDiLavoro{
         this.dipartimento = dipartimento;
     }
 
-    @Override
-    public void checkIn() {
-       if (this instanceof Dirigente){
-           System.out.println("Sono un dirigente e il mio turno di lavoro è inziato");
-       } else if (this instanceof DipendenteFullTime) {
-           System.out.println("Sono un dipendente fullTime e il mio turno di lavoro è inziato");
-        } else if (this instanceof DipendentePartTime) {
-           System.out.println("Sono un dipendente parTime e il mio turno di lavoro è inziato");
-        }
-    }
-
     public abstract float calculatesalary();
 
 }

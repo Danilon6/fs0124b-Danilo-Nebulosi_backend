@@ -22,10 +22,9 @@ public class Main {
 
         TurnoDiLavoro[] dipendentiEVolontari = {dipendente1, dipendente2, dipendente3, volontario1};
 
-        for (var dipendente : dipendentiEVolontari){
-            dipendente.checkIn();
+        for (int i = 0; i < dipendentiEVolontari.length; i++) {
+            dipendentiEVolontari[i].checkIn();;
         }
-
 
     }
 }

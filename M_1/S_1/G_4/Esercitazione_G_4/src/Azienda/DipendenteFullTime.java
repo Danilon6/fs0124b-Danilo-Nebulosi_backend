@@ -15,4 +15,8 @@ public class DipendenteFullTime extends Dipendente {
         return stipendio * ore;
     }
 
+    @Override
+    public void checkIn() {
+        System.out.println("Sono un dipendente fullTime e il mio turno di lavoro è inziato");
+    }
 }

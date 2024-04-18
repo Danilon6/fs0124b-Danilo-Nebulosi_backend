@@ -12,4 +12,8 @@ public class DipendentePartTime extends Dipendente{
         return stipendio * ore;
     }
 
+    @Override
+    public void checkIn() {
+        System.out.println("Sono un dipendente parTime e il mio turno di lavoro è inziato");
+    }
 }
