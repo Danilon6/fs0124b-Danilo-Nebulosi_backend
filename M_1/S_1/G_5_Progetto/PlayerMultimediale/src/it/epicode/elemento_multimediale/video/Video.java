@@ -16,8 +16,8 @@ implements PuoEssereRiprodotto,
 
     //ATTRIBUTI
     private int durata;
-    private int volume = 5;
-    private int luminosita = 5;
+    private int volume = 0;
+    private int luminosita = 0;
 
     //COSTRUTTORE
     public Video(String t, int d) {

@@ -14,7 +14,7 @@ implements PuoEssereRiprodotto {
 
     //ATTRIBUTI
     private int durata;
-    private int volume = 5;
+    private int volume = 0;
 
     //COSTRUTTORE
     public RegistrazioneAudio(String t, int d ) {

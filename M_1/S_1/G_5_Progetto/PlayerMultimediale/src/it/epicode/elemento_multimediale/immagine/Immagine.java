@@ -11,7 +11,7 @@ implements PuoRegolareLaLuminosita {
 
 
     //ATTRIBUTI
-    private int luminosita = 5;
+    private int luminosita = 0;
 
     //COSTRUTTORE
     public Immagine(String t) {
