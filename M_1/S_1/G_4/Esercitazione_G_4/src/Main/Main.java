@@ -1,6 +1,8 @@
 package Main;
 
 import Azienda.*;
+import Azienda.enums.TipoDipartimento;
+import Azienda.Interfaces.DichiarareInizioTurno;
 
 public class Main {
 
@@ -20,11 +22,13 @@ public class Main {
             System.out.println(stipendioTotale);
         }
 
-        TurnoDiLavoro[] dipendentiEVolontari = {dipendente1, dipendente2, dipendente3, volontario1};
+        DichiarareInizioTurno[] dipendentiEVolontari = {dipendente1, dipendente2, dipendente3, volontario1};
 
-        for (int i = 0; i < dipendentiEVolontari.length; i++) {
-            dipendentiEVolontari[i].checkIn();;
+
+        for (var dipendente : dipendentiEVolontari){
+            dipendente.checkIn();
         }
+
 
     }
 }

@@ -4,7 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="66dd8759-4fd5-4ea7-889d-1f559596ccce" name="Changes" comment="" />
+    <list default="true" id="66dd8759-4fd5-4ea7-889d-1f559596ccce" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../G_4/Esercitazione_G_4/src/Azienda/Interfaces/DichiarareInizioTurno.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../G_4/Esercitazione_G_4/src/Azienda/Dipendente.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../G_4/Esercitazione_G_4/src/Azienda/Dipendente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../G_4/Esercitazione_G_4/src/Azienda/DipendenteFullTime.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../G_4/Esercitazione_G_4/src/Azienda/DipendenteFullTime.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../G_4/Esercitazione_G_4/src/Azienda/DipendentePartTime.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../G_4/Esercitazione_G_4/src/Azienda/DipendentePartTime.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../G_4/Esercitazione_G_4/src/Azienda/Dirigente.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../G_4/Esercitazione_G_4/src/Azienda/Dirigente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../G_4/Esercitazione_G_4/src/Azienda/TipoDipartimento.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../G_4/Esercitazione_G_4/src/Azienda/enums/TipoDipartimento.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../G_4/Esercitazione_G_4/src/Azienda/TurnoDiLavoro.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../G_4/Esercitazione_G_4/src/Azienda/Volontario.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../G_4/Esercitazione_G_4/src/Azienda/Volontario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../G_4/Esercitazione_G_4/src/Main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../G_4/Esercitazione_G_4/src/Main/Main.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

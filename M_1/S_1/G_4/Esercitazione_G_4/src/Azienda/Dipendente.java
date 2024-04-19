@@ -1,7 +1,14 @@
 package Azienda;
 
+import Azienda.enums.TipoDipartimento;
+import Azienda.Interfaces.DichiarareInizioTurno;
+import org.w3c.dom.ls.LSOutput;
+
+import java.net.StandardSocketOptions;
+import java.sql.SQLOutput;
+
 public abstract class Dipendente
-implements TurnoDiLavoro{
+implements DichiarareInizioTurno {
     private String matricola;
     private float stipendio;
     private TipoDipartimento dipartimento;

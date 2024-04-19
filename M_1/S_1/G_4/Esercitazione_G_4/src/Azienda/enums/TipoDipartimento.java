@@ -1,4 +1,4 @@
-package Azienda;
+package Azienda.enums;
 
 public enum TipoDipartimento {
     PRODUZIONE,

@@ -1,5 +1,7 @@
 package Azienda;
 
+import Azienda.enums.TipoDipartimento;
+
 public class DipendenteFullTime extends Dipendente {
 
 

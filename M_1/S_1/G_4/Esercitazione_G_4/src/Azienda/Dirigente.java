@@ -1,5 +1,7 @@
 package Azienda;
 
+import Azienda.enums.TipoDipartimento;
+
 public class Dirigente extends Dipendente{
     public Dirigente(String matricola, float stipendio, TipoDipartimento dipartimento) {
         super(matricola, stipendio, dipartimento);
