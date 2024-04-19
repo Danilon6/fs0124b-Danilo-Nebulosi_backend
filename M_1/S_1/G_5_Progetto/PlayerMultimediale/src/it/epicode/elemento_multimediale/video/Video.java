@@ -52,14 +52,6 @@ implements PuoEssereRiprodotto,
         //    luminositaString.append("*");
         //}
 
-
-        // CICLO PER AGGIUNGERE '!' ALLA STRINGA VOLUMESTRING
-
-
-        // CICLO PER AGGIUNGERE '*' ALLA STRINGA LUMINOSITASTRING
-
-
-
         // CICLO PER STAMPARE IL TITOLO TANTE VOLTE QUANTO LA DURATA E AGGIUNGERE
         // '!' TANTE VOLTE QUANTO IL VALORE DI VOLUME E
         // '*' TANTE VOLTE QUANTO IL VALORE DI LUMINOSITA
