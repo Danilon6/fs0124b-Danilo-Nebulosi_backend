@@ -6,10 +6,8 @@ import it.epicode.interfaces.PuoRegolareLaLuminosita;
 public class Immagine extends ElementoMultimediale
 implements PuoRegolareLaLuminosita {
 
-    /*
-     * L'istanza di una imamgine prevede solo un titolo,
-     * Nonostante la presenza di metodi appositi che regolano la luminosita
-    */
+    // L'istanza di una imamgine prevede solo un titolo.
+
 
 
     //ATTRIBUTI
@@ -33,22 +31,24 @@ implements PuoRegolareLaLuminosita {
         //for (int i = 0; i < luminosita; i++) {
         //    luminositaString.append("*");
         //}
-        String luminositaString = "";
+
+
+        // STAMPO IL TITOLO E AGGIUNGO '*' TANTE VOLTE QUANTO IL VALORE DI VOLUME
+            System.out.print(this.titolo + " - ");
         for (int i = 0; i < luminosita; i++) {
-            luminositaString = luminositaString + "*";
+            System.out.print("*");
         }
 
-        System.out.println(this.titolo + " - " + luminositaString);
     }
 
-    //METODI PER REGOALRE LA LUMINOSITA
+    //METODI PER REGOLARE LA LUMINOSITA
     @Override
     public void alzaLuminosita() {
         if (this.luminosita == 10) {
             System.out.println("La luminosità è già al massimo");
             return;
         }
-        this.luminosita += 1;
+        ++this.luminosita;
     }
 
     @Override
@@ -57,7 +57,7 @@ implements PuoRegolareLaLuminosita {
             System.out.println("La luminosità è già al minimo");
             return;
         }
-        this.luminosita -= 1;
+        -- this.luminosita;
     }
 
     @Override

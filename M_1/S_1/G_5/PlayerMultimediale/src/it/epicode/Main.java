@@ -80,6 +80,7 @@ public class Main {
 
     //GESTIONE SUB-MENU-VISUALIZZAZIONE OGGETTI
     private static void handleMainMenuOption1(Scanner scanner) {
+        //MOSTRO IL MENU
         System.out.println("Hai selezionato l'opzione 1 del menu principale.");
         System.out.println("*** SUB-MENU-VISUALIZZAZIONE***:");
         System.out.println("1. Visualizza il primo oggetto");
@@ -90,6 +91,7 @@ public class Main {
         System.out.print("Scelta: ");
         int choice = scanner.nextInt();
 
+        //CONTROLLO LA SCELTA
         switch (choice) {
             case 1:
                 returnToMainAndReadObject(choice);
@@ -112,14 +114,16 @@ public class Main {
 
     //GESTIONE SUB-MENU-CREAZIONE OGGETTI
     private static void handleMainMenuOption2(Scanner scanner) {
+        //MOSTRO IL MENU
         System.out.println("Hai selezionato l'opzione 2 del menu principale.");
-        // Implementa il menu secondario
         System.out.println("*** SUB-MENU-CREAZIONE***:");
         System.out.println("1. Crea un'immagine");
         System.out.println("2. Crea un video");
         System.out.println("3. Crea una registrazione audio");
         System.out.print("Scelta: ");
         int choice = scanner.nextInt();
+
+        //CONTROLLO LA SCELTA
         switch (choice) {
             case 1:
                 Immagine img1 = new Immagine("img1");
@@ -141,12 +145,14 @@ public class Main {
 
     //METODO PER RITORNARE AL MAIN MENU E RESITUIRE L'OGGETTO CHE SI VUOLE LEGGERE DAL SUB MENU DI VISUALIZZAZIONE OGGETTI
     private static void returnToMainAndReadObject(int choice) {
+        //RESTITUISCO L'OGGETTO SOTTO FORMA DI STRINGA E RIPORTO L'UTENTE AL MENU
         System.out.println(elementiMultimediali[choice -1]);
         main(new String[]{});
     }
 
     //METODO PER RITORNARE AL MAIN MENU DAL SUB MENU CREAZIONE OGGETTI DANDO CONFERMA DELLA CREAZIONE
     private static void returnToMain() {
+        //RESTITUISOC UN MESSAGGIO DI AVVENUTA CREAZIONE E RIPORTO L'UTENTE AL MAIN MENU
         System.out.println("Il tuo oggetto è stato creato con successo");
         main(new String[]{});
     }
@@ -154,14 +160,14 @@ public class Main {
     //AGGIUNGO SOLO GLI ULTIMI 5 OGGETTI CREATI ALL'ARRAY DI ELEMENTI MULTIMEDIALI
     private static void controlloQuantita(ElementoMultimediale el){
         if (currentObj == 4) {
-            // copia gli ultimi 4 scartando il primo
+            // COPIA GLI ULTIMI 4 SCARTANDO IL PRIMO
             for (int i = 0; i < 4; ++i) {
                 elementiMultimediali[i] = elementiMultimediali[i + 1];
             }
         }
-        // aggiunge l'oggetto
+        // AGGIUNGE L'OGGETTO
         elementiMultimediali[currentObj] = el;
-        // se sono stati creati meno di 5 oggetti incremento
+        // SE SONO STATIC REATI MENO DI 5 OGGETTI
         if (currentObj < 4)
             ++currentObj;
     }
@@ -172,9 +178,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-
         Scanner scanner = new Scanner(System.in);
-
 
         MenuOption selectedOption = MenuOption.MAIN_MENU_OPTION_2;
         do {
@@ -209,15 +213,13 @@ public class Main {
             record1.alzaVolume();
             record1.alzaVolume();
             record1.play();
-        */
+         */
 
 
         //TEST CLASSE VIDEO
-        /* Video video1 = new Video("video1", 3);
+        /*Video video1 = new Video("video1", 3);
             video1.alzaLuminosita();
             video1.alzaLuminosita();
-            video1.setLuminosita(10);
-            video1.setVolume(10);
             video1.abbassaVolume();
             video1.abbassaVolume();
             video1.alzaVolume();
@@ -225,14 +227,14 @@ public class Main {
          */
 
         //TEST CLASSE IMMAGINE
-        /*
-            Immagine img1 = new Immagine("img1");
+
+        /*  Immagine img1 = new Immagine("img1");
             img1.alzaLuminosita();
             img1.abbassaLuminosita();
             img1.abbassaLuminosita();
             img1.alzaLuminosita();
             img1.show();
-        */
+          */
 
     }
 }

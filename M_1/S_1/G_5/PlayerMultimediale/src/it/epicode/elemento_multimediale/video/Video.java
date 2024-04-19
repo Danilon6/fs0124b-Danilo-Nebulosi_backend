@@ -10,8 +10,8 @@ implements PuoEssereRiprodotto,
 
     /*
     * L'istanza di un video prevede necessarimente una durata,
-    * non avrebbe senso creare un video senza una durata come
-    * non avrebbe senso modificarla in seguito.
+    * non avrebbe senso creare un video senza una durata
+    * come non avrebbe senso modificarla in seguito.
      */
 
     //ATTRIBUTI
@@ -52,23 +52,33 @@ implements PuoEssereRiprodotto,
         //    luminositaString.append("*");
         //}
 
-        String volumeString = "";
-        for (int i = 0; i < volume; i++) {
-            volumeString = volumeString + "!";
-        }
 
-        String luminositaString = "";
-        for (int i = 0; i < luminosita; i++) {
-            luminositaString = luminositaString + "*";
-        }
+        // CICLO PER AGGIUNGERE '!' ALLA STRINGA VOLUMESTRING
 
+
+        // CICLO PER AGGIUNGERE '*' ALLA STRINGA LUMINOSITASTRING
+
+
+
+        // CICLO PER STAMPARE IL TITOLO TANTE VOLTE QUANTO LA DURATA E AGGIUNGERE
+        // '!' TANTE VOLTE QUANTO IL VALORE DI VOLUME E
+        // '*' TANTE VOLTE QUANTO IL VALORE DI LUMINOSITA
         for (int i = 0; i < this.durata; i++) {
+            System.out.print(this.titolo + " - ");
+            for (int j = 0; j < volume; j++) {
+                System.out.print("!");
+            }
 
-            System.out.println(this.titolo + " - " + volumeString + " - " + luminositaString);
+            System.out.print(" - ");
+
+            for (int k = 0; k < luminosita; k++) {
+                System.out.print("*");;
+            }
+            System.out.println(" ");
         }
     }
 
-    //METODI PER REGOALRE VOLUME E LUMINOSITA
+    //METODI PER REGOLARE VOLUME E LUMINOSITA
     @Override
     public void alzaVolume() {
         if (this.volume == 10) {

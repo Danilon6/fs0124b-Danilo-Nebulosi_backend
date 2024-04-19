@@ -8,8 +8,8 @@ implements PuoEssereRiprodotto {
 
     /*
      * L'istanza di una registrazioneAudio prevede necessarimente una durata,
-     * non avrebbe senso creare una registrazione audio senza una durata come
-     * non avrebbe senso modificarla in seguito.
+     * non avrebbe senso creare una registrazione audio senza una durata
+     * come non avrebbe senso modificarla in seguito.
      */
 
     //ATTRIBUTI
@@ -40,24 +40,28 @@ implements PuoEssereRiprodotto {
         //    volumeString.append("!");
         //}
 
-        String volumeString = "";
-        for (int i = 0; i < volume; i++) {
-            volumeString = volumeString + "!";
-        }
+        // CICLO PER STAMPARE IL TITOLO TANTE VOLTE QUANTO LA DURATA E AGGIUNGERE
+        // '!' TANTE VOLTE QUANTO IL VALORE DI VOLUME
         for (int i = 0; i < this.durata; i++) {
 
-            System.out.println(this.titolo + " - " + volumeString);
+            System.out.print(this.titolo + " - ");
+
+            for (int j = 0; j < volume; j++) {
+                System.out.print("!");
+            }
+
+            System.out.println(" ");
         }
     }
 
-    //METODI PER REGOALRE IL VOLUME
+    //METODI PER REGOLARE IL VOLUME
     @Override
     public void alzaVolume() {
         if (this.volume == 10) {
             System.out.println("Il volume è già al massimo");
             return;
         }
-        this.volume += 1;
+        ++this.volume;
     }
 
     @Override
@@ -66,9 +70,10 @@ implements PuoEssereRiprodotto {
             System.out.println("Il volume è già al minimo");
             return;
         }
-        this.volume -= 1;
+        --this.volume;
     }
 
+    //OVERRIDE DEL METODO TOSTRING
     @Override
     public String toString() {
         return "RegistrazioneAudio [titolo=" + titolo + " durata="+ durata +"]";
