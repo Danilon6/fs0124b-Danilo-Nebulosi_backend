@@ -1,4 +1,4 @@
-package it.epicode.elementoMultimediale;
+package it.epicode.elemento_multimediale;
 
 public abstract class ElementoMultimediale {
     protected String titolo;

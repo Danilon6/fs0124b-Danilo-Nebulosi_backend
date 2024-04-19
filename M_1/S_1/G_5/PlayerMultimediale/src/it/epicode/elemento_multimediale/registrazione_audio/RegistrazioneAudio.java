@@ -1,8 +1,7 @@
-package it.epicode.elementoMultimediale.registrazioneAudio;
+package it.epicode.elemento_multimediale.registrazione_audio;
 
-import it.epicode.elementoMultimediale.ElementoMultimediale;
+import it.epicode.elemento_multimediale.ElementoMultimediale;
 import it.epicode.interfaces.PuoEssereRiprodotto;
-import it.epicode.interfaces.PuoRegolareLaLuminosita;
 
 public class RegistrazioneAudio extends ElementoMultimediale
 implements PuoEssereRiprodotto {
@@ -15,7 +14,7 @@ implements PuoEssereRiprodotto {
 
     //ATTRIBUTI
     private int durata;
-    private int volume = 0;
+    private int volume = 5;
 
     //COSTRUTTORE
     public RegistrazioneAudio(String t, int d ) {
@@ -32,7 +31,7 @@ implements PuoEssereRiprodotto {
         return volume;
     }
 
-    //METODO PER RIPRODURRE UN VIDEO ED UNA REGISTRAZIONE AUDIO
+    //METODO PER RIPRODURRE UNA REGISTRAZIONE
     @Override
     public void play() {
         //STRINGBUILDER FUNZIONA MA NON LO ABBIAMO FATTO

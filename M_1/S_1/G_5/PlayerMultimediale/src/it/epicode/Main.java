@@ -1,9 +1,9 @@
 package it.epicode;
 
-import it.epicode.elementoMultimediale.ElementoMultimediale;
-import it.epicode.elementoMultimediale.immagine.Immagine;
-import it.epicode.elementoMultimediale.registrazioneAudio.RegistrazioneAudio;
-import it.epicode.elementoMultimediale.video.Video;
+import it.epicode.elemento_multimediale.ElementoMultimediale;
+import it.epicode.elemento_multimediale.immagine.Immagine;
+import it.epicode.elemento_multimediale.registrazione_audio.RegistrazioneAudio;
+import it.epicode.elemento_multimediale.video.Video;
 import it.epicode.menu.MenuOption;
 
 import java.util.Scanner;
@@ -72,12 +72,7 @@ public class Main {
     * SUB_MENU_2_OPTION_3 = CREA UNA REGISTRAZIONE AUDIO;
     *
     * 3.1
-    * FATTA LA SCELTA L UTENTE HA 2 POSSIBILITA
-    *
-    * CREARE UN NUOVO OGGETTO
-    * (GLI VINEE DATA LA POSSIBILITA DI SCEGLIERE NUOVAMENTE TRA LE TRE OPZIONI)
-    *
-    * L UTENTE PUO TORNARE AL MAIN MENU
+    * FATTA LA SCELTA L'UTENTE PUO TORNARE AL MAIN MENU
     *
      */
 
@@ -150,7 +145,7 @@ public class Main {
 
     //METODO PER RITORNARE AL MAIN MENU DAL SUB MENU CREAZIONE OGGETTI DANDO CONFERMA DELLA CREAZIONE
     private static void returnToMain() {
-        System.out.println("Il tuo ogetto è stato creato con successo");
+        System.out.println("Il tuo oggetto è stato creato con successo");
         main(new String[]{});
     }
 
@@ -182,8 +177,8 @@ public class Main {
         MenuOption selectedOption = MenuOption.MAIN_MENU_OPTION_2;
         do {
             System.out.println("*** MAIN MENU ***");
-            System.out.println("1. OPTION 1");
-            System.out.println("2. OPTION 2");
+            System.out.println("1. VISUALIZZA OGGETTI");
+            System.out.println("2. CREA OGGETTI");
             System.out.println("CHOOSE");
             int choice = scanner.nextInt();
 

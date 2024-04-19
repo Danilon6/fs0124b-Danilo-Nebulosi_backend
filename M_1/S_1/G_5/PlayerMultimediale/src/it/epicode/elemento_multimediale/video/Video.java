@@ -1,6 +1,6 @@
-package it.epicode.elementoMultimediale.video;
+package it.epicode.elemento_multimediale.video;
 
-import it.epicode.elementoMultimediale.ElementoMultimediale;
+import it.epicode.elemento_multimediale.ElementoMultimediale;
 import it.epicode.interfaces.PuoEssereRiprodotto;
 import it.epicode.interfaces.PuoRegolareLaLuminosita;
 
@@ -16,8 +16,8 @@ implements PuoEssereRiprodotto,
 
     //ATTRIBUTI
     private int durata;
-    private int volume = 0;
-    private int luminosita = 0;
+    private int volume = 5;
+    private int luminosita = 5;
 
     //COSTRUTTORE
     public Video(String t, int d) {
@@ -107,7 +107,7 @@ implements PuoEssereRiprodotto,
 
     @Override
     public String toString() {
-        return "RegistrazioneAudio [titolo=" + titolo + " durata="+ durata +"]";
+        return "Video [titolo=" + titolo + " durata="+ durata +"]";
     }
 
 }

@@ -1,6 +1,6 @@
-package it.epicode.elementoMultimediale.immagine;
+package it.epicode.elemento_multimediale.immagine;
 
-import it.epicode.elementoMultimediale.ElementoMultimediale;
+import it.epicode.elemento_multimediale.ElementoMultimediale;
 import it.epicode.interfaces.PuoRegolareLaLuminosita;
 
 public class Immagine extends ElementoMultimediale
@@ -13,7 +13,7 @@ implements PuoRegolareLaLuminosita {
 
 
     //ATTRIBUTI
-    private int luminosita;
+    private int luminosita = 5;
 
     //COSTRUTTORE
     public Immagine(String t) {
