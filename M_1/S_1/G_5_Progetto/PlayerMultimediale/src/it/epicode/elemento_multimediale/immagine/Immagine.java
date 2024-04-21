@@ -6,9 +6,7 @@ import it.epicode.interfaces.PuoRegolareLaLuminosita;
 public class Immagine extends ElementoMultimediale
 implements PuoRegolareLaLuminosita {
 
-    // L'istanza di una imamgine prevede solo un titolo.
-
-
+    // L'istanza di una immagine prevede solo un titolo.
 
     //ATTRIBUTI
     private int luminosita = 0;
@@ -33,7 +31,7 @@ implements PuoRegolareLaLuminosita {
         //}
 
 
-        // STAMPO IL TITOLO E AGGIUNGO '*' TANTE VOLTE QUANTO IL VALORE DI VOLUME
+        // CICLO PER STAMPARE IL TITOLO E AGGIUNGERE '*' TANTE VOLTE QUANTO IL VALORE DI VOLUME
             System.out.print(this.titolo + " - ");
         for (int i = 0; i < luminosita; i++) {
             System.out.print("*");
@@ -60,6 +58,7 @@ implements PuoRegolareLaLuminosita {
         -- this.luminosita;
     }
 
+    //OVERRIDE DEL METODO TOSTRING
     @Override
     public String toString() {
         return "Immagine [titolo=" + titolo + "]";

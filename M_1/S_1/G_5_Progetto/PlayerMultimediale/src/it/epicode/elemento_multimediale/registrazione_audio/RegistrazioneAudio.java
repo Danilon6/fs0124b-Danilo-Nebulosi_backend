@@ -7,7 +7,7 @@ public class RegistrazioneAudio extends ElementoMultimediale
 implements PuoEssereRiprodotto {
 
     /*
-     * L'istanza di una registrazioneAudio prevede necessarimente una durata,
+     * L'istanza di una registrazioneAudio prevede necessariamente una durata,
      * non avrebbe senso creare una registrazione audio senza una durata
      * come non avrebbe senso modificarla in seguito.
      */
@@ -40,7 +40,7 @@ implements PuoEssereRiprodotto {
         //    volumeString.append("!");
         //}
 
-        // CICLO PER STAMPARE IL TITOLO TANTE VOLTE QUANTO LA DURATA E AGGIUNGERE
+        // CICLO PER STAMPARE IL TITOLO TANTE VOLTE QUANTO IL VALORE DI DURATA E AGGIUNGERE
         // '!' TANTE VOLTE QUANTO IL VALORE DI VOLUME
         for (int i = 0; i < this.durata; i++) {
 

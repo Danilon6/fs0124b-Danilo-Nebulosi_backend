@@ -9,7 +9,7 @@ implements PuoEssereRiprodotto,
         PuoRegolareLaLuminosita {
 
     /*
-    * L'istanza di un video prevede necessarimente una durata,
+    * L'istanza di un video prevede necessariamente una durata,
     * non avrebbe senso creare un video senza una durata
     * come non avrebbe senso modificarla in seguito.
      */
@@ -38,7 +38,7 @@ implements PuoEssereRiprodotto,
         return luminosita;
     }
 
-    //METODO PER RIPRODURRE UN VIDEO ED UNA REGISTRAZIONE AUDIO
+    //METODO PER RIPRODURRE UN VIDEO
     @Override
     public void play() {
 
@@ -52,7 +52,7 @@ implements PuoEssereRiprodotto,
         //    luminositaString.append("*");
         //}
 
-        // CICLO PER STAMPARE IL TITOLO TANTE VOLTE QUANTO LA DURATA E AGGIUNGERE
+        // CICLO PER STAMPARE IL TITOLO TANTE VOLTE QUANTO IL VALORE DI DURATA E AGGIUNGERE
         // '!' TANTE VOLTE QUANTO IL VALORE DI VOLUME E
         // '*' TANTE VOLTE QUANTO IL VALORE DI LUMINOSITA
         for (int i = 0; i < this.durata; i++) {
@@ -107,6 +107,8 @@ implements PuoEssereRiprodotto,
         --this.luminosita;
     }
 
+
+    //OVERRIDE DEL METODO TOSTRING
     @Override
     public String toString() {
         return "Video [titolo=" + titolo + " durata="+ durata +"]";

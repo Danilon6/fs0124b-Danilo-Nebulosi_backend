@@ -11,11 +11,8 @@ import java.util.Scanner;
 public class Main {
     /*
     * SCOPO: Organizzare classi astratte, interfacce e classi concrete
-    * al fine di implementare un lettore multimediae che memorizza 5 elementi
-    * creati con valori letti da tastiera in un array.
-    * Il lettore deve chiedere all'utente quale oggetto riprodurre/visualizzare
-    * l'Utente deve digitare un intero da 1 a 5 oppure 0 per uscire
-    *
+    * al fine di implementare un lettore multimediale che memorizza 5 elementi
+    * creati da tastiera in un array.
     *
     * In questa applicazione java saranno presenti Elementi multimediali riproducibili o meno
     * tutti caratterizzati dalla presenza di un titolo,
@@ -26,27 +23,27 @@ public class Main {
     *
     * La registrazione audio e il video possono essere rirpodotti
     * mentre l'immagine può essere visualizzata .
-    * ///////////////////////////////////////////////////////////////////////////
+    *
     *
     * La registrazione audio e il video implementeranno un'interfaccia PuoEssereRiprodotto.
     *
     * L'interfaccia in questione avrà 2 attributi:
     * - durata di tipo int,
-    * -volume di tipo int;
+    * - volume di tipo int;
     * e 3 metodi:
     * - play(),
-    * - AlzaVolume(),
+    * - alzaVolume(),
     * - abbassaVolume();
     *
-    * Data l'esigenza per la registrazione audio e l'immagine di regolare la luminosità,
+    * Data l'esigenza per il video e l'immagine di regolare la luminosità,
     * ci sarà una seconda interfaccia RegolaLuminosità che avrà 1 attributo:
     * - luminosità di tipo int;
     * e 2 metodi:
-    * - AlzaLuminosita(),
+    * - alzaLuminosita(),
     * - abbassaLuminosita();
     *
     *
-    * l'immagine inoltre per essere riprodotta avrà un metodo show()
+    * l'immagine inoltre per essere visualizzata avrà un metodo show()
     */
 
 
@@ -67,7 +64,8 @@ public class Main {
     *
     * IN ENTRAMBI I CASI L'UTENTE VIENE RIPORTATO AL MAIN MENU
     *
-    * 3 SE L'UTENTE SCEGLIE L'OPZIONE 2 ACCEDE AD UN SUB_MENU_2 CON 3 OPZIONI:
+    * 3
+    * SE L'UTENTE SCEGLIE L'OPZIONE 2 ACCEDE AD UN SUB_MENU_2 CON 3 OPZIONI:
     * SUB_MENU_2_OPTION_1 = CREA UN'IMMAGINE,
     * SUB_MENU_2_OPTION_2 = CREA UN VIDEO,
     * SUB_MENU_2_OPTION_3 = CREA UNA REGISTRAZIONE AUDIO;
@@ -143,7 +141,7 @@ public class Main {
         }
     }
 
-    //METODO PER RITORNARE AL MAIN MENU E RESITUIRE L'OGGETTO CHE SI VUOLE LEGGERE DAL SUB MENU DI VISUALIZZAZIONE OGGETTI
+    //METODO PER RITORNARE AL MAIN MENU E RESTITUIRE L'OGGETTO CHE SI VUOLE LEGGERE DAL SUB MENU DI VISUALIZZAZIONE OGGETTI
     private static void returnToMainAndReadObject(int choice) {
         //RESTITUISCO L'OGGETTO SOTTO FORMA DI STRINGA E RIPORTO L'UTENTE AL MENU
         System.out.println(elementiMultimediali[choice -1]);
@@ -209,7 +207,9 @@ public class Main {
 
 
         //TEST CLASSE REGISTRAZIONE AUDIO
-        /* RegistrazioneAudio record1 = new RegistrazioneAudio("record1",2);
+
+        /*
+            RegistrazioneAudio record1 = new RegistrazioneAudio("record1",2);
             record1.alzaVolume();
             record1.alzaVolume();
             record1.play();
@@ -217,7 +217,9 @@ public class Main {
 
 
         //TEST CLASSE VIDEO
-        /*Video video1 = new Video("video1", 3);
+
+        /*
+            Video video1 = new Video("video1", 3);
             video1.alzaLuminosita();
             video1.alzaLuminosita();
             video1.abbassaVolume();
@@ -228,7 +230,8 @@ public class Main {
 
         //TEST CLASSE IMMAGINE
 
-        /*  Immagine img1 = new Immagine("img1");
+        /*
+            Immagine img1 = new Immagine("img1");
             img1.alzaLuminosita();
             img1.abbassaLuminosita();
             img1.abbassaLuminosita();
