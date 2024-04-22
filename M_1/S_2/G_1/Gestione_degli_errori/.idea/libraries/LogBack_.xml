@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="LogBack_">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../../../../../LogBack_" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/../../../../../LogBack_" recursive="false" />
+  </library>
+</component>
