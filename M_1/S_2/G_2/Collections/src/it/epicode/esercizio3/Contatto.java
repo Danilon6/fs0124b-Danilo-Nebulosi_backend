@@ -14,11 +14,6 @@ public class Contatto {
         map.remove(nome);
     }
 
-    private static void findByNumber(HashMap map, Integer number){
-        for (Integer number : map.keySet()) {
-
-        }
-    }
 
 
 

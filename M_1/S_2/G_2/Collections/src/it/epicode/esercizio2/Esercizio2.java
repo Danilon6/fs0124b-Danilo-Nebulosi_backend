@@ -10,8 +10,7 @@ public class Esercizio2 {
 
         var lista = new ArrayList<Integer>();
         for (int i = 0; i < n; i++) {
-            int randomNumber = random.nextInt(101);
-            lista.add(randomNumber);
+            lista.add(random.nextInt(101));
         }
         return lista;
     }
