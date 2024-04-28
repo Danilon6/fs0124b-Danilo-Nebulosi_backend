@@ -2,11 +2,13 @@ package it.epicode.data;
 
 import it.epicode.enums.Genere;
 
+import java.time.LocalDate;
+
 public class Libro extends ElementoCatalogo {
     private String author;
     private Genere genre;
 
-    public Libro(Long ISBN, String title, String releaseDate, int pages) {
+    public Libro(Long ISBN, String title, LocalDate releaseDate, int pages, String author, Genere genre) {
         super(ISBN, title, releaseDate, pages);
         this.author = author;
         this.genre = genre;

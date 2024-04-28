@@ -1,12 +1,14 @@
 package it.epicode.data;
 
+import java.time.LocalDate;
+
 public abstract class ElementoCatalogo {
     protected Long ISBN;
     protected String title;
-    protected String releaseDate;
+    protected LocalDate releaseDate;
     protected int pages;
 
-    public ElementoCatalogo(Long ISBN, String title, String releaseDate, int pages) {
+    public ElementoCatalogo(Long ISBN, String title, LocalDate releaseDate, int pages) {
         this.ISBN = ISBN;
         this.title = title;
         this.releaseDate = releaseDate;
@@ -29,11 +31,11 @@ public abstract class ElementoCatalogo {
         this.title = title;
     }
 
-    public String getReleaseDate() {
+    public LocalDate getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(String releaseDate) {
+    public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
     }
 

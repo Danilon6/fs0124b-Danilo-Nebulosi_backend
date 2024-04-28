@@ -2,11 +2,13 @@ package it.epicode.data;
 
 import it.epicode.enums.Periodicita;
 
+import java.time.LocalDate;
+
 public class Rivista extends ElementoCatalogo {
     Periodicita periodicita;
 
-    public Rivista(Long ISBN, String titolo, Periodicita periodicita, String annoDiPubblicazione, int numeroPagine) {
-        super(ISBN, titolo, annoDiPubblicazione, numeroPagine);
+    public Rivista(Long ISBN, String title, LocalDate releaseDate, int pages, Periodicita periodicita) {
+        super(ISBN, title, releaseDate, pages);
         this.periodicita = periodicita;
     }
 
