@@ -21,13 +21,16 @@ public class Main {
         CatalogoService service = new ClassCatalogoService();
         // TEST AGGIUNTA DI ELEMENTI
         //service.addElement(new Libro(1L, "Libro1", LocalDate.now(), 100, "Autore1", Genere.FANTASCIENZA));
-        //service.addElement(new Libro(2L, "Libro2", LocalDate.of(2021, 4, 20), 100, "Autore2", Genere.GIALLO));
-        //service.addElement(new Libro(3L, "Libro3", LocalDate.now(), 100, "Autore3", Genere.ROMANZO));
-        //service.addElement(new Rivista(5L, "Rivista1", LocalDate.now(), 100, Periodicita.SEMESTRALE));
-        //service.addElement(new Rivista(6L, "Rivista2", LocalDate.now(), 100, Periodicita.SEMESTRALE));
+        //service.addElement(new Libro(2L, "Libro2", LocalDate.of(2021, 4, 20), 300, "Autore2", Genere.GIALLO));
+        //service.addElement(new Libro(3L, "Libro3", LocalDate.now(), 250, "Autore3", Genere.ROMANZO));
+        //service.addElement(new Rivista(5L, "Rivista1", LocalDate.now(), 60, Periodicita.SETTIMANALE));
+        //service.addElement(new Rivista(6L, "Rivista2", LocalDate.now(), 150, Periodicita.MENSILE));
+        //service.addElement(new Rivista(7L, "Rivista3", LocalDate.now(), 90, Periodicita.SEMESTRALE));
+        //service.addElement(new Rivista(8L, "Rivista4", LocalDate.now(), 120, Periodicita.SETTIMANALE));
 
         //TEST RIMOZIONE DI UN ELEMENTO
-        //service.removeElementByISBN(6L);
+        //service.removeElementByISBN(8L);
+
 
         //TEST METODI PER LA RICERCA
         //service.searchByAttribute(TypeAttribute.ISBN, 3l);
