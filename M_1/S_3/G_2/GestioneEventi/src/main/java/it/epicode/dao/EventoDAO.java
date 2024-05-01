@@ -1,25 +1,29 @@
-package it.epicode;
+package it.epicode.dao;
 
-import it.epicode.data.Evento;
+import it.epicode.Main;
+import it.epicode.entities.Evento;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class EventoDAO implements EventoInterfaceDAO{
+public class EventoDAO implements EventoInterfaceDAO {
     private static final Logger logger = LoggerFactory.getLogger(Main.class);
     private static final String PERSISTENCE_UNIT = "Gestione_Eventi";
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
-    EntityManager em = emf.createEntityManager();
+    private final EntityManagerFactory emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+    private final EntityManager em = emf.createEntityManager();
 
     @Override
     public void save(Evento e) {
         var transaction = em.getTransaction();
-        transaction.begin();
-        em.persist(e);
-        transaction.commit();
+        try {
+            transaction.begin();
+            em.persist(e);
+            transaction.commit();
+        } catch(Exception ex){
         logger.info("Hai salvato correttamente un nuovo evento");
+        }
     }
 
     @Override
@@ -36,10 +40,11 @@ public class EventoDAO implements EventoInterfaceDAO{
         em.remove(e);
         transaction.commit();
         logger.info("L'elemento {} è stato rimosso", e);
-        em.close();
     }
 
     public void closeEntityManagerFactory() {
+        em.close();
         emf.close();
     }
-    }
+
+}

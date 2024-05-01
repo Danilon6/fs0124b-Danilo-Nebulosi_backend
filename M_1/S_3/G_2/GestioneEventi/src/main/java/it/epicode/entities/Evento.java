@@ -1,6 +1,5 @@
-package it.epicode.data;
+package it.epicode.entities;
 
-import it.epicode.TypeEvent;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -13,28 +12,16 @@ public class Evento {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     long id;
-
-    @Column(
-            length = 25,
-            nullable = false
-    )
+    @Column(nullable = false)
     String title;
 
-    @Column(
-            nullable = false
-    )
+    @Column(nullable = false)
     LocalDate date;
-    @Column(
-            nullable = false
-    )
+    @Column(nullable = false)
     String description;
-    @Enumerated(
-            EnumType.STRING
-    )
+    @Enumerated(EnumType.STRING)
      TypeEvent type;
-    @Column(
-            nullable = false
-    )
+    @Column(nullable = false)
     int maxParticipants;
 
     public Evento() {
