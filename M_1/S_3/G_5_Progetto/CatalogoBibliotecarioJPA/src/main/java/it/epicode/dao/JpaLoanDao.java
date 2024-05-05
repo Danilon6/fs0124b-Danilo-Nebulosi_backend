@@ -10,14 +10,17 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 
 public class JpaLoanDao implements LoanDao {
-    private static final Logger logger = LoggerFactory.getLogger(JpaLibraryDao.class);
+    private static final Logger logger = LoggerFactory.getLogger(JpaLoanDao.class);
     private static final String PERSISTENCE_UNIT = "catalogoBibliotecario";
-    private final EntityManager em;
+    private final EntityManagerFactory emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+    private final EntityManager em = emf.createEntityManager();
 
-    public JpaLoanDao() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
-        em = emf.createEntityManager();
+    @Override
+    public List<Loan> getAllLoans() {
+        return em.createQuery("SELECT l FROM Loan l", Loan.class)
+                .getResultList();
     }
+
 
     @Override
     public void addLoan(Loan loan) {
@@ -26,7 +29,6 @@ public class JpaLoanDao implements LoanDao {
             t.begin();
             em.persist(loan);
             t.commit();
-            logger.info("Loan: {} saved", loan);
         } catch (Exception ex) {
             if (em.getTransaction().isActive()) {
                 em.getTransaction().rollback();
@@ -35,6 +37,7 @@ public class JpaLoanDao implements LoanDao {
 
         }
     }
+
 
     @Override
     public List<Loan> getLoanByCardNumber(int card_number) {
@@ -47,5 +50,11 @@ public class JpaLoanDao implements LoanDao {
     public List<Loan> getExpiredOrNotReturnedLoans() {
         return em.createQuery("SELECT l FROM Loan l WHERE l.return_date < CURRENT_DATE AND l.actual_return_date IS NULL", Loan.class)
                 .getResultList();
+    }
+
+    @Override
+    public void close() throws Exception {
+        em.close();
+        emf.close();
     }
 }

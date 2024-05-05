@@ -29,7 +29,8 @@ public class Main {
       String PERSISTENCE_UNIT = "gestione_eventi";
       EntityManagerFactory emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 
-      EntityManager em = emf.createEntityManager();
+      EntityManager em = emf.createEntityManager()non hoc apito qual'è il problema? s enon torva le lemento con quell'isbn il mio codice cosa restiuisce?
+      ;
         JPALocationDAO locationDAO = new JPALocationDAO(em);
         JPAEventoDAO eventDAO = new JPAEventoDAO(em);
         JPAPersonaDAO personaDAO = new JPAPersonaDAO(em);

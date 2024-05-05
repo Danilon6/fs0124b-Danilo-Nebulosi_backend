@@ -13,8 +13,8 @@ public class User extends BaseEntity{
     private String last_name;
     private LocalDate birth_date;
     private int card_number;
-    @OneToMany(mappedBy = "user")
-    private List<Loan> allLoans = new ArrayList<>();
+    //@OneToMany(mappedBy = "user")
+    //private List<Loan> allLoansUser = new ArrayList<>();
 
     public User(){}
 

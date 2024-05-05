@@ -3,12 +3,15 @@ package it.epicode.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Entity
 public class Loan extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+    @ManyToOne
+    @JoinColumn(name = "item_id")
     private Item borrowed_item;
     private LocalDate loan_start_date;
     private LocalDate return_date;
@@ -66,5 +69,15 @@ public class Loan extends BaseEntity {
     @Override
     public String toString() {
         return "Loan{" + "user=" + user + ", borrowed_item=" + borrowed_item + ", loan_start_date=" + loan_start_date + ", return_date=" + return_date + ", actual_return_date=" + actual_return_date + super.toString() +'}';
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof Loan && obj.hashCode() == this.hashCode();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(user, borrowed_item, loan_start_date, return_date, actual_return_date);
     }
 }

@@ -9,14 +9,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class JpaUserDao implements UserDao {
-    private static final Logger logger = LoggerFactory.getLogger(JpaUserDao.class);
+    private static final Logger logger = LoggerFactory.getLogger(JpaLoanDao.class);
     private static final String PERSISTENCE_UNIT = "catalogoBibliotecario";
-    private final EntityManager em;
-
-    public JpaUserDao(){
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
-        em = emf.createEntityManager();
-    }
+    private final EntityManagerFactory emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+    private final EntityManager em = emf.createEntityManager();
 
     @Override
     public void addUser(User user) {
@@ -26,7 +22,6 @@ public class JpaUserDao implements UserDao {
             t.begin();
             em.persist(user);
             t.commit();
-            logger.info("user: {} saved", user);
         } catch (Exception ex) {
             if (em.getTransaction().isActive()) {
                 em.getTransaction().rollback();
@@ -34,5 +29,11 @@ public class JpaUserDao implements UserDao {
             logger.error("Exception in addUser()", ex);
         }
 
+    }
+
+    @Override
+    public void close() throws Exception {
+        em.close();
+        emf.close();
     }
 }

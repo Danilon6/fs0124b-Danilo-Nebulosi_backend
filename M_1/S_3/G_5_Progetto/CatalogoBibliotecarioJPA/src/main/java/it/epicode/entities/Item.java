@@ -11,7 +11,7 @@ import java.io.Serializable;
 @DiscriminatorColumn(name = Tables.Columns.DISCRIMINATOR, discriminatorType = DiscriminatorType.INTEGER)
 public abstract class Item extends BaseEntity implements Serializable {
 
-    @Column(length = 13,nullable = false)
+    @Column(length = 18,nullable = false)
     private String isbn;
     @Column(length = 125, nullable = false)
     private String title;

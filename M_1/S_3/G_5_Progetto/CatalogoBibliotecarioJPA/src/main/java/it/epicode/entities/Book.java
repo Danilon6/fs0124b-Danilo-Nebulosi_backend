@@ -40,6 +40,6 @@ public class Book extends Item{
 
     @Override
     public String toString() {
-        return "Book{" + "author='" + author + '\'' + ", category=" + category + super.toString() + '}';
+        return "Book{" + "author='" + author + '\'' + ", category=" + category + " " + super.toString() + '}';
     }
 }
