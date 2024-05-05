@@ -28,7 +28,7 @@ public class Main {
       Logger logger = LoggerFactory.getLogger(Main.class);
       String PERSISTENCE_UNIT = "gestione_eventi";
       EntityManagerFactory emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
-      logger.error("Il logger è qui");
+
       EntityManager em = emf.createEntityManager();
         JPALocationDAO locationDAO = new JPALocationDAO(em);
         JPAEventoDAO eventDAO = new JPAEventoDAO(em);
