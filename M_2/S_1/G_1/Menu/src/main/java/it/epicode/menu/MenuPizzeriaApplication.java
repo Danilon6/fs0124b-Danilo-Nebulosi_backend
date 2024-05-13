@@ -2,6 +2,7 @@ package it.epicode.menu;
 
 import it.epicode.menu.enums.ToppingName;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeansException;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -26,6 +27,8 @@ public class MenuPizzeriaApplication {
 
 			menu.setAllPizza(menuPizzaList);
 			System.out.println(menu);
+		} catch(BeansException ex){
+			log.error("Exception in main()", ex);
 		}
 	}
 
