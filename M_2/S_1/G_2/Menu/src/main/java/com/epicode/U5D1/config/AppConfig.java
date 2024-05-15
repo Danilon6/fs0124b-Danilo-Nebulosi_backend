@@ -1,7 +1,8 @@
-package com.epicode.U5D1.entities;
+package com.epicode.U5D1.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import com.epicode.U5D1.entities.*;
+import com.epicode.U5D1.enums.OrderStatus;
+import com.epicode.U5D1.enums.TableStatus;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -112,21 +113,22 @@ public class AppConfig {
 		return new Menu(pizzaList, drinkList, toppingsList);
 	}
 
-	@Bean(name = "Order1")
-	public Order order1(){
-		List<Item> items = new ArrayList<>();
-		items.add(pizzaMargheritaBean());
-		items.add(pizzaSalamiBean());
-		items.add(pizzaSalamiXlBean());
-		items.add(waterBean());
-		items.add(wineBean());
-        return new Order(1, items, OrderStatus.IN_PROGRESS, 3, LocalDate.now());
 
-
+	@Bean(name = "table1")
+	public Table table1(){
+		return Table.builder()
+				.withMaxSeats(4)
+				.withTableNumber(1)
+				.withTableStatus(TableStatus.OCCUPIED)
+				.build();
 	}
 
-	@Bean(name = "Table1")
-	public Table table1(){
-		return new Table(1, order1(), TableStatus.OCCUPIED, 4 );
+	@Bean(name = "table2")
+	public Table table2(){
+		return Table.builder()
+				.withMaxSeats(8)
+				.withTableNumber(2)
+				.withTableStatus(TableStatus.FREE)
+				.build();
 	}
 }
