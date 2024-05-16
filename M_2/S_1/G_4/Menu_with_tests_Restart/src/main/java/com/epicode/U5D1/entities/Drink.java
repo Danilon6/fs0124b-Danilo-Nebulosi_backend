@@ -16,9 +16,7 @@ import lombok.Setter;
 public class Drink extends Item {
 	private String name;
 
-	@ManyToOne
-	@JoinColumn(name = "menu_id")
-	private Menu menu;
+
 
 	public Drink(String name, int calories, double price) {
 		super(calories, price);

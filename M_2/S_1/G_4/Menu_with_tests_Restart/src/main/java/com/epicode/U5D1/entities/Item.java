@@ -16,6 +16,10 @@ public abstract class Item {
 	protected int calories;
 	protected double price;
 
+	@ManyToOne
+	@JoinColumn(name = "menu_id")
+	private Menu menu;
+
 	public Item(int calories, double price) {
 		this.calories = calories;
 		this.price = price;

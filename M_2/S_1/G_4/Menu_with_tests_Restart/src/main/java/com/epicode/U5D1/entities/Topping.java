@@ -20,10 +20,6 @@ public class Topping extends Item {
 	@JoinColumn(name = "pizza_id")
 	private Pizza pizza;
 
-	@ManyToOne
-	@JoinColumn(name = "menu_id")
-	private Menu menu;
-
 
 	public Topping(String name, int calories, double price) {
 		super(calories, price);

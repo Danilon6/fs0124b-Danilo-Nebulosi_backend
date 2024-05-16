@@ -19,9 +19,6 @@ public class Pizza extends Item {
 	private List<Topping> toppingList;
 	private boolean isXl = false;
 
-	@ManyToOne
-	@JoinColumn(name = "menu_id")
-	private Menu menu;
 
 	public Pizza(String name, List<Topping> toppingList, boolean isXl) {
 		super(1012, 4.3);
