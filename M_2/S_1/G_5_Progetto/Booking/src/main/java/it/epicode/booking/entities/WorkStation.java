@@ -2,14 +2,12 @@ package it.epicode.booking.entities;
 
 import it.epicode.booking.enums.Type;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@EqualsAndHashCode(callSuper = false)
 @Entity
 @Data
 @NoArgsConstructor

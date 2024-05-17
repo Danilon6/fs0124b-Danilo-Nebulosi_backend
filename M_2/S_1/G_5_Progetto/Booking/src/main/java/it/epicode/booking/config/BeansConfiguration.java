@@ -125,7 +125,7 @@ public class BeansConfiguration {
     public Booking bookingUser1Second(){
         return Booking.builder()
                 .withDate(LocalDate.of(2024,5,20))
-                .withUser(user2())
+                .withUser(user1())
                 .withWorkStation(workstationOpenSpaceNaples())
                 .build();
     }
@@ -138,4 +138,23 @@ public class BeansConfiguration {
                 .withWorkStation(workstationOpenSpaceNaples())
                 .build();
     }
+
+    @Bean(name = "bookingUser3SecondTest")
+    public Booking bookingUser3SecondTest(){
+        return Booking.builder()
+                .withDate(LocalDate.now())
+                .withUser(user3())
+                .withWorkStation(workstationPrivateNaples())
+                .build();
+    }
+
+    @Bean(name = "bookingUser1ThirdTest")
+    public Booking bookingUser1ThirdTest(){
+        return Booking.builder()
+                .withDate(LocalDate.of(2024,5,20))
+                .withUser(user1())
+                .withWorkStation(workstationOpenSpaceNaples())
+                .build();
+    }
+
 }

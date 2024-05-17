@@ -10,6 +10,6 @@ import java.util.List;
 
 public interface WorkStationRepository extends JpaRepository<WorkStation, Long> {
 
-    List<WorkStation> findByTypeAndBuildingCityEqualsTo(Type type, Cities city);
+    List<WorkStation> findByTypeAndBuildingCity(Type type, Cities city);
 
 }

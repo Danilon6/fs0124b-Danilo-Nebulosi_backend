@@ -1,14 +1,10 @@
 package it.epicode.booking.runner;
 
-import it.epicode.booking.dao.BookingService;
-import it.epicode.booking.dao.BuildingService;
-import it.epicode.booking.dao.UserService;
-import it.epicode.booking.dao.WorkStationService;
+import it.epicode.booking.dao.*;
 import it.epicode.booking.entities.Booking;
 import it.epicode.booking.entities.Building;
 import it.epicode.booking.entities.User;
 import it.epicode.booking.entities.WorkStation;
-import it.epicode.booking.repositories.WorkStationRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -75,7 +71,7 @@ public class Runner implements CommandLineRunner {
     @Qualifier("workstationOpenSpaceNaples")
     private WorkStation workstationOpenSpaceNaples;
 
-    //ISTANZIO 3 BOOKING
+    //ISTANZIO 4 BOOKING
     @Autowired
     @Qualifier("bookingUser1First")
     private Booking bookingUser1First;
@@ -91,6 +87,11 @@ public class Runner implements CommandLineRunner {
     @Autowired
     @Qualifier("bookingUser3First")
     private Booking bookingUser3First;
+
+    @Autowired
+    @Qualifier("bookingUser3SecondTest")
+    private Booking bookingUser3SecondTest;
+
 
 
 
@@ -130,6 +131,9 @@ public class Runner implements CommandLineRunner {
         booking.create(bookingUser2First);
         booking.create(bookingUser1Second);
         booking.create(bookingUser3First);
+
+
+        //booking.create(bookingUser3SecondTest);
 
     }
 }

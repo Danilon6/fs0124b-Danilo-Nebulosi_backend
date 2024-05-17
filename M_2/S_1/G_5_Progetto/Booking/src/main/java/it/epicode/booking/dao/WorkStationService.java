@@ -5,15 +5,12 @@ import it.epicode.booking.entities.WorkStation;
 import it.epicode.booking.enums.Cities;
 import it.epicode.booking.enums.Type;
 import it.epicode.booking.repositories.WorkStationRepository;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
-@Slf4j
 public class WorkStationService implements CRUDDao<WorkStation>{
 
     @Autowired
@@ -39,8 +36,7 @@ public class WorkStationService implements CRUDDao<WorkStation>{
         return workStation.findById(id).orElse(null);
     }
 
-    public Optional<List<WorkStation>> getByTypeAndCity(Type type, Cities city){
-        List<WorkStation> workStationFounded = workStation.findByTypeAndBuildingCityEqualsTo(type, city);
-        return Optional.ofNullable(workStationFounded);
+    public List<WorkStation> getByTypeAndCity(Type type, Cities city){
+        return workStation.findByTypeAndBuildingCity(type, city);
     }
 }

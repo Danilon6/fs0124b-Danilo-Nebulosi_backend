@@ -2,16 +2,15 @@ package it.epicode.booking.dao;
 
 import it.epicode.booking.exceptions.NoAvailabeSeatsException;
 import it.epicode.booking.entities.Booking;
-import it.epicode.booking.exceptions.UserHasAlreadyBookedAWorkStationInThisDay;
+import it.epicode.booking.exceptions.UserHasAlreadyABookedWorkStationInThisDay;
 import it.epicode.booking.repositories.BookingRepository;
-import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 
 @Service
-@Slf4j
 public class BookingService implements CRUDDao<Booking>{
 
     @Autowired
@@ -27,13 +26,11 @@ public class BookingService implements CRUDDao<Booking>{
             if (workStationBookingList.size() < w.getMax_seats()) {
                 booking.save(e);
             } else {
-                throw new NoAvailabeSeatsException(w.getMax_seats());
+                throw new NoAvailabeSeatsException(w);
             }
-
         } else {
-            throw new UserHasAlreadyBookedAWorkStationInThisDay(e.getUser());
+            throw new UserHasAlreadyABookedWorkStationInThisDay(e.getUser());
         }
-
     }
 
     @Override

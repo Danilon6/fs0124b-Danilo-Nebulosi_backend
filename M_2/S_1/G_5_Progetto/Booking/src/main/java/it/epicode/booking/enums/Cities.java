@@ -4,6 +4,4 @@ public enum Cities {
     ROME,
     NAPLES,
     MILAN,
-    TURIN,
-    FLORENCE
 }
