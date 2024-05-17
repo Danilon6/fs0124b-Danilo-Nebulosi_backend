@@ -2,7 +2,6 @@ package it.epicode.booking.dao;
 
 import it.epicode.booking.entities.User;
 import it.epicode.booking.repositories.UserRepository;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

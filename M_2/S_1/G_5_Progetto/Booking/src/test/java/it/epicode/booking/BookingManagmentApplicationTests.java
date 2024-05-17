@@ -8,7 +8,7 @@ import it.epicode.booking.entities.Booking;
 import it.epicode.booking.entities.WorkStation;
 import it.epicode.booking.enums.Cities;
 import it.epicode.booking.enums.Type;
-import it.epicode.booking.exceptions.NoAvailabeSeatsException;
+import it.epicode.booking.exceptions.NoAvailableSeatsException;
 import it.epicode.booking.exceptions.UserHasAlreadyABookedWorkStationInThisDay;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;
@@ -16,11 +16,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 
 import java.time.LocalDate;
@@ -64,7 +62,7 @@ class BookingManagmentApplicationTests {
 	@Test
 	@DisplayName("Exception thrown because all seats are unavailable")
 	void testExceptionMaxSeats(){
-		assertThrows(NoAvailabeSeatsException.class, () -> booking.create(bookingUser3SecondTest));
+		assertThrows(NoAvailableSeatsException.class, () -> booking.create(bookingUser3SecondTest));
 	}
 
 	@Test

@@ -1,7 +1,7 @@
 package it.epicode.booking.dao;
 
-import it.epicode.booking.exceptions.NoAvailabeSeatsException;
 import it.epicode.booking.entities.Booking;
+import it.epicode.booking.exceptions.NoAvailableSeatsException;
 import it.epicode.booking.exceptions.UserHasAlreadyABookedWorkStationInThisDay;
 import it.epicode.booking.repositories.BookingRepository;
 
@@ -26,7 +26,7 @@ public class BookingService implements CRUDDao<Booking>{
             if (workStationBookingList.size() < w.getMax_seats()) {
                 booking.save(e);
             } else {
-                throw new NoAvailabeSeatsException(w);
+                throw new NoAvailableSeatsException(w);
             }
         } else {
             throw new UserHasAlreadyABookedWorkStationInThisDay(e.getUser());

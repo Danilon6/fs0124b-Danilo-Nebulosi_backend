@@ -11,9 +11,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Component
 @Slf4j
 public class Runner implements CommandLineRunner {
@@ -111,29 +108,11 @@ public class Runner implements CommandLineRunner {
         workStation.create(workstationPrivateNaples);
         workStation.create(workstationOpenSpaceNaples);
 
-        //AGGIUNGO DELLE WORKSTATION A DEGLI EDIFICI
-        // VEDERE SE NE ABBIAMO VERAMENTE BISOGNO E SE LA VUOI FARE QUI O
-        // DIRETTAMENTE NEL BEAN COSI E PIU PULITO SICRUAMENTE
-        List<WorkStation> workStationInRomeList = new ArrayList<>();
-        workStationInRomeList.add(workstationPrivateRome);
-        buildingInRome.setWorkStations(workStationInRomeList);
-        building.update(buildingInRome);
-
-        List<WorkStation> workstationInNaplesList = new ArrayList<>();
-        workstationInNaplesList.add(workstationPrivateNaples);
-        workstationInNaplesList.add(workstationOpenSpaceNaples);
-        buildingInNaples.setWorkStations(workstationInNaplesList);
-
-
-
         //SALVO LE BOOKING SUL DB
         booking.create(bookingUser1First);
         booking.create(bookingUser2First);
         booking.create(bookingUser1Second);
         booking.create(bookingUser3First);
-
-
-        //booking.create(bookingUser3SecondTest);
 
     }
 }
