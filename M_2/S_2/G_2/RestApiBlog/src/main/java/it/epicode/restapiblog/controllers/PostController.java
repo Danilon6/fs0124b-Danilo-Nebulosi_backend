@@ -37,21 +37,8 @@ public class PostController {
     @GetMapping("/{id}")
     public ResponseEntity<Post> getPost (@PathVariable Long id) {
         var p = post.getById(id);
-        return p.map(value -> new ResponseEntity<>(value, null, HttpStatus.FOUND)).orElseGet(() -> new ResponseEntity<>(null, null, HttpStatus.NOT_FOUND));
+        return p.map(value -> new ResponseEntity<>(value, null, HttpStatus.FOUND)).orElseGet(() -> ResponseEntity.notFound().build());
     }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Post> deletePost(@PathVariable Long id) {
-        var postToEliminate = post.getById(id);
-
-        if (postToEliminate.isEmpty())
-            return ResponseEntity.notFound().build();
-
-        post.delete(id);
-        return new ResponseEntity<Post>(HttpStatus.NO_CONTENT);
-
-    }
-
 
     @PutMapping("/{id}")
     public ResponseEntity<Post> updatePost(
@@ -71,6 +58,17 @@ public class PostController {
 
         post.update(ObjPost);
         return new ResponseEntity<Post>(ObjPost, null, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Post> deletePost(@PathVariable Long id) {
+        var postToEliminate = post.getById(id);
+
+        if (postToEliminate.isEmpty())
+            return ResponseEntity.notFound().build();
+
+        post.delete(id);
+        return new ResponseEntity<Post>(HttpStatus.NO_CONTENT);
 
     }
 

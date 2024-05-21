@@ -16,6 +16,7 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public Author create(Author e) {
+        e.setAvatar("https://ui-avatars.com/api/?name=" + e.getFirstName() + "+" + e.getLastName());
         return author.save(e);
     }
 

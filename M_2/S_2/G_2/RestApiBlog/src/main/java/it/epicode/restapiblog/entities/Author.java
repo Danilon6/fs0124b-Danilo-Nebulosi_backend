@@ -23,8 +23,7 @@ public class Author extends BaseEntity{
     private String lastName;
     @Column(nullable= false, length = 75)
     private String email;
-    @Column(name = "birt_date", nullable= false)
-    private LocalDate birthDate;
-    @Column(nullable= false)
+    @Column(name = "birth_date", nullable= false)
+    private String birthDate;
     private String avatar; //https://ui-avatars.com/api/?name=firstName+lastName
 }
