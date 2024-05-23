@@ -1,8 +1,8 @@
-package it.epicode.restapiblog.services.exceptions;
+package it.epicode.restapiblog.controllers.exceptions;
 
 import java.io.Serial;
 
-public class NotFoundException extends AppException{
+public class NotFoundException extends RuntimeException{
 
     @Serial
     private static final long serialVersionUID = 1L;

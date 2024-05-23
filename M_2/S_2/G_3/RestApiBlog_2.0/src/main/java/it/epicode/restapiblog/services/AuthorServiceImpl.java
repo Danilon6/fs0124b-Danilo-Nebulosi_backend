@@ -2,16 +2,15 @@ package it.epicode.restapiblog.services;
 
 import it.epicode.restapiblog.entities.Author;
 import it.epicode.restapiblog.repositories.AuthorRepository;
-import it.epicode.restapiblog.services.exceptions.DuplicateEmailException;
-import it.epicode.restapiblog.services.exceptions.NotFoundException;
+import it.epicode.restapiblog.controllers.exceptions.DuplicateEmailException;
+import it.epicode.restapiblog.controllers.exceptions.NotFoundException;
+import it.epicode.restapiblog.services.dto.AuthorDTO;
 import it.epicode.restapiblog.utils.EntitiesUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 
 @Service
 public class AuthorServiceImpl implements AuthorService {
@@ -23,12 +22,17 @@ public class AuthorServiceImpl implements AuthorService {
     EntitiesUtils utils;
 
     @Override
-    public Author create(Author e) {
+    public Author create(AuthorDTO e) {
         var authorDuplicated = author.findByEmail(e.getEmail());
-
         if (authorDuplicated.isEmpty()) {
-            e.setAvatar("https://ui-avatars.com/api/?name=" + e.getFirstName() + "+" + e.getLastName());
-            return author.save(e);
+            var a = Author.builder()
+                    .withFirstName(e.getFirstName())
+                    .withLastName(e.getLastName())
+                    .withEmail(e.getEmail())
+                    .withBirthDate(e.getBirthDate())
+                    .withAvatar("https://ui-avatars.com/api/?name=" + e.getFirstName() + "+" + e.getLastName())
+                    .build();
+            return author.save(a);
         }else {
             throw new DuplicateEmailException(e.getEmail());
         }
@@ -37,15 +41,16 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public Author update(Long id, Author e) {
-        var a = author.findById(id).orElseThrow();
+        var a = this.getById(id);
         utils.copy(e, a);
         return a;
     }
 
     @Override
-    public void delete(Long id) {
+    public Author delete(Long id) {
         var founded = this.getById(id);
         author.delete(founded);
+        return founded;
     }
 
     @Override

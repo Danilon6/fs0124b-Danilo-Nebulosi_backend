@@ -10,7 +10,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(setterPrefix = "with")
-@Table(name = "post", indexes = { @Index(columnList = "title,author_id", unique = true)})
+@Table(name = "post")
 public class Post extends BaseEntity{
 
     @Column(nullable= false, length = 25)
@@ -27,7 +27,7 @@ public class Post extends BaseEntity{
     private double readingTime;
 
     @ManyToOne
-    @JoinColumn(name = "author_id")
+    @JoinColumn(name = "author_id", unique = true)
     private Author author;
 
 

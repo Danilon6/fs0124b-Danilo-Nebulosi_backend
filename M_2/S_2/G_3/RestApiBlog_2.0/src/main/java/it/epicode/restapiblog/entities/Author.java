@@ -13,19 +13,17 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(setterPrefix = "with")
-@Table(name = "author", indexes = { @Index(columnList = "email", unique = true)})
+@Table(name = "author")
 public class Author extends BaseEntity{
 
     @Column(name = "first_name", nullable= false, length = 50)
     private String firstName;
     @Column(name = "last_name", nullable= false, length = 50)
     private String lastName;
-    @Column(nullable= false, length = 75)
+    @Column(nullable= false, length = 75, unique = true)
     private String email;
     @Column(name = "birth_date", nullable= false)
     private String birthDate;
     private String avatar; //https://ui-avatars.com/api/?name=firstName+lastName
 
-    @OneToMany(mappedBy = "author")
-    private List<Post> posts;
 }
