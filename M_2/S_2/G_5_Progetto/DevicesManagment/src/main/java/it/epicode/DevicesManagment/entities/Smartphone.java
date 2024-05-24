@@ -5,10 +5,12 @@ import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import lombok.Builder;
 import lombok.Data;
-import lombok.EqualsAndHashCode;;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;;
 
 @Entity
 @Data
+@NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @DiscriminatorValue("smartphone")
 public class Smartphone extends Device{

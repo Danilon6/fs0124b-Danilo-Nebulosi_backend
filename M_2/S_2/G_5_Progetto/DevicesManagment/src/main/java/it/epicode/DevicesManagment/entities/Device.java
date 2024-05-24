@@ -8,7 +8,6 @@ import lombok.*;
 @Table(name = "devices")
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = true)
-@NoArgsConstructor
 @AllArgsConstructor
 @Builder(setterPrefix = "with")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -24,10 +23,14 @@ public class Device extends BaseEntity{
     @Column(nullable = false)
     private double screenSize;
     @Column(nullable = false)
-    @Builder.Default
+    @Builder.Default //NON FUNZIONA E SONO COSTRETTO A METTERE NEI SERVICE IL WITHSTATUS
     @Enumerated(EnumType.STRING)
     private Status status = Status.AVAILABLE;
     @ManyToOne
     @JoinColumn(name = "assignedTo")
     private Employee employee;
+
+
+    public Device() {
+    }
 }

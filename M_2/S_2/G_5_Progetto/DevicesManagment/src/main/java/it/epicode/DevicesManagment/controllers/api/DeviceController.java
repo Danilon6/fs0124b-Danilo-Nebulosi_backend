@@ -3,6 +3,7 @@ package it.epicode.DevicesManagment.controllers.api;
 import it.epicode.DevicesManagment.controllers.exceptions.ApiValidationException;
 import it.epicode.DevicesManagment.controllers.models.DeviceRequest;
 import it.epicode.DevicesManagment.entities.*;
+import it.epicode.DevicesManagment.entities.enums.Status;
 import it.epicode.DevicesManagment.services.interfaces.DeviceService;
 import it.epicode.DevicesManagment.services.interfaces.LaptopService;
 import it.epicode.DevicesManagment.services.interfaces.SmartphoneService;
@@ -73,7 +74,7 @@ public class DeviceController {
                 .withModel(deviceToSave.model())
                 .withSerialNumber(deviceToSave.serialNumber())
                 .withScreenSize(deviceToSave.screenSize())
-                .withBrand(deviceToSave.brand())
+                .withStatus(Status.AVAILABLE)
                 .build());
         return new ResponseEntity<>(e, null, HttpStatus.CREATED);
     }

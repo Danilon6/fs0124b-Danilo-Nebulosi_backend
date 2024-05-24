@@ -8,6 +8,7 @@ import it.epicode.DevicesManagment.repositories.SmartphoneRepository;
 import it.epicode.DevicesManagment.services.dto.DeviceDTO;
 import it.epicode.DevicesManagment.services.interfaces.SmartphoneService;
 import it.epicode.DevicesManagment.utils.EntitiesUtils;
+import lombok.Builder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -43,6 +44,7 @@ public class SmartphoneServiceImpl implements SmartphoneService {
                 .withBrand(e.getBrand())
                 .withSerialNumber(e.getSerialNumber())
                 .withScreenSize(e.getScreenSize())
+                .withStatus(e.getStatus())
                 .build());
 
     }

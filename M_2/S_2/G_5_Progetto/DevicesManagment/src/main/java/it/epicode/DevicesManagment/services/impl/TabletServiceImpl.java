@@ -44,6 +44,7 @@ public class TabletServiceImpl implements TabletService {
                 .withModel(e.getModel())
                 .withSerialNumber(e.getSerialNumber())
                 .withScreenSize(e.getScreenSize())
+                .withStatus(e.getStatus())
                 .build());
     }
 

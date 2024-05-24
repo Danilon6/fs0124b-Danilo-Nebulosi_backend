@@ -42,6 +42,7 @@ public class LaptopServiceImpl implements LaptopService {
                 .withBrand(e.getBrand())
                 .withSerialNumber(e.getSerialNumber())
                 .withScreenSize(e.getScreenSize())
+                .withStatus(e.getStatus())
                 .build());
     }
 

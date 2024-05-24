@@ -2,6 +2,7 @@ package it.epicode.DevicesManagment.config;
 
 import com.github.javafaker.Faker;
 import it.epicode.DevicesManagment.entities.Smartphone;
+import it.epicode.DevicesManagment.entities.enums.Status;
 import it.epicode.DevicesManagment.services.dto.DeviceDTO;
 import it.epicode.DevicesManagment.services.interfaces.EmployeeService;
 import it.epicode.DevicesManagment.services.dto.EmployeeDTO;
@@ -46,35 +47,38 @@ public class PopulateDatabaseRunner implements CommandLineRunner {
                                 .build()
                 ).forEach(employee::save);
 
-        IntStream.range(0,10)
-                        .mapToObj(
-                                n-> DeviceDTO.builder()
-                                        .withSerialNumber(faker.number().numberBetween(1000000000L, 9999999999L))
-                                        .withBrand(faker.company().name())
-                                        .withModel(faker.lorem().word())
-                                        .withScreenSize(faker.number().randomDouble(2, 6, 16))
-                                        .build()
-                        ).forEach(smartphone::save);
-
-        IntStream.range(0,10)
-                .mapToObj(
-                        n-> DeviceDTO.builder()
-                                .withSerialNumber(faker.number().numberBetween(1000000000L, 9999999999L))
-                                .withBrand(faker.company().name())
-                                .withModel(faker.lorem().word())
-                                .withScreenSize(faker.number().randomDouble(2, 6, 16))
-                                .build()
-                ).forEach(tablet::save);
-
-        IntStream.range(0,10)
-                .mapToObj(
-                        n-> DeviceDTO.builder()
-                                .withSerialNumber(faker.number().numberBetween(1000000000L, 9999999999L))
-                                .withBrand(faker.company().name())
-                                .withModel(faker.lorem().word())
-                                .withScreenSize(faker.number().randomDouble(2, 6, 16))
-                                .build()
-                ).forEach(laptop::save);
+//        IntStream.range(0,10)
+//                        .mapToObj(
+//                                n-> DeviceDTO.builder()
+//                                        .withSerialNumber(faker.number().numberBetween(1000000000L, 9999999999L))
+//                                        .withBrand(faker.company().name())
+//                                        .withModel(faker.lorem().word())
+//                                        .withScreenSize(faker.number().randomDouble(2, 6, 16))
+//                                        .withStatus(Status.AVAILABLE)
+//                                        .build()
+//                        ).forEach(smartphone::save);
+//
+//        IntStream.range(0,10)
+//                .mapToObj(
+//                        n-> DeviceDTO.builder()
+//                                .withSerialNumber(faker.number().numberBetween(1000000000L, 9999999999L))
+//                                .withBrand(faker.company().name())
+//                                .withModel(faker.lorem().word())
+//                                .withScreenSize(faker.number().randomDouble(2, 6, 16))
+//                                .withStatus(Status.AVAILABLE)
+//                                .build()
+//                ).forEach(tablet::save);
+//
+//        IntStream.range(0,10)
+//                .mapToObj(
+//                        n-> DeviceDTO.builder()
+//                                .withSerialNumber(faker.number().numberBetween(1000000000L, 9999999999L))
+//                                .withBrand(faker.company().name())
+//                                .withModel(faker.lorem().word())
+//                                .withScreenSize(faker.number().randomDouble(2, 6, 16))
+//                                .withStatus(Status.AVAILABLE)
+//                                .build()
+//                ).forEach(laptop::save);
 
         log.info("Database populated");
     }

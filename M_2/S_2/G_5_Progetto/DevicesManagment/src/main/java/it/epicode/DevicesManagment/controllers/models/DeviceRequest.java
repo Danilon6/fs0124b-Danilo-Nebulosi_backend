@@ -18,6 +18,7 @@ public record DeviceRequest(
         @NotNull(message = "Il serialNumber non può essere omesso")
         Long serialNumber,
         @NotNull(message = "Lo screenSize non può essere omesso")
-        double screenSize
+        double screenSize,
+        Status status
 ) {
 }

@@ -7,6 +7,7 @@ import lombok.*;
 
 @Entity
 @Data
+@NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @DiscriminatorValue("laptop")
 public class Laptop extends Device{
@@ -14,6 +15,7 @@ public class Laptop extends Device{
     public Laptop(String model, String brand, Long serialNumber, double screenSize, Status status, Employee employee) {
         super(model, brand, serialNumber, screenSize, status, employee);
     }
+
 
     public static class LaptopBuilder extends DeviceBuilder{
         LaptopBuilder() {

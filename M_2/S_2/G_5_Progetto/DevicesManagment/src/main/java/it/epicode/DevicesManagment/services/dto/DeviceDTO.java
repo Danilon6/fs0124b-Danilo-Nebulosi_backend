@@ -1,5 +1,6 @@
 package it.epicode.DevicesManagment.services.dto;
 
+import it.epicode.DevicesManagment.entities.enums.Status;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,4 +15,5 @@ public class DeviceDTO {
     String brand;
     Long serialNumber;
     double screenSize;
+    Status status;
 }
