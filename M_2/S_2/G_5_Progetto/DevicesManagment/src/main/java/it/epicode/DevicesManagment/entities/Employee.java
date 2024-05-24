@@ -28,5 +28,4 @@ public class Employee extends BaseEntity{
     @Builder.Default
     @OneToMany(mappedBy = "employee")
     private List<Device> devices = new ArrayList<>();
-
 }
