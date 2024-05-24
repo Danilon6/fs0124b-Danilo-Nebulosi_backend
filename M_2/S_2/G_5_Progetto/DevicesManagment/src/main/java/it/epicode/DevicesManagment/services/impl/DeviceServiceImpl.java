@@ -61,7 +61,7 @@ public class DeviceServiceImpl implements DeviceService {
                    .filter(device-> !Objects.equals(device.getId(), deviceId))
                    .toList();
            //AGGIORNO EFFETTIVAMENTE LA LISTA DELL'EMPLOYEE
-           currentEmployee.setDevices(newDeviceList); //QUESTO PASSAGGIO è SUPERFLUO?
+           currentEmployee.setDevices(newDeviceList);
             //AGGIORNO L'EMPLOYEE
             employee.update(currentEmployee.getId(), currentEmployee);
 
