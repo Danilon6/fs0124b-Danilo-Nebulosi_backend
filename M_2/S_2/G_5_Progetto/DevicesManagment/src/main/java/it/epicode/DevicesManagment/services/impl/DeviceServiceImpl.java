@@ -55,7 +55,7 @@ public class DeviceServiceImpl implements DeviceService {
         if (d.getStatus() != Status.AVAILABLE) {
             //RECUPERO L'EMPLOYEE A CUI è STATO ASSEGANTO
            var currentEmployee = d.getEmployee();
-           //ESCLUDO DALL LISTA DEI DEVICE DELL'EMPLOYEE ILDEVICE CHE VOGLIO RIASSGENARE
+           //ESCLUDO DALL LISTA DEI DEVICE DELL'EMPLOYEE IL DEVICE CHE VOGLIO RIASSGENARE
            var newDeviceList = currentEmployee.getDevices()
                    .stream()
                    .filter(device-> !Objects.equals(device.getId(), deviceId))
@@ -64,20 +64,19 @@ public class DeviceServiceImpl implements DeviceService {
            currentEmployee.setDevices(newDeviceList);
             //AGGIORNO L'EMPLOYEE
             employee.update(currentEmployee.getId(), currentEmployee);
-
-            //RECUPERO LA LISTA DI DEVICES DELL'EMPLOYEE A CUI DEVO ASSEGANRE IL DEVICE
-           var actualEmployeeDevicesList= e.getDevices();
-           //AGGIUNGO ALLA LISTA IL NUOVO DEVICE SENZA TOGLIERE I DEVICES CHE C'ERANO PRIMA
-            actualEmployeeDevicesList.add(d);
-            //AGGIORNO EFFETTIVAMENTE LA LISTA
-            e.setDevices(actualEmployeeDevicesList);
-            //AGGIORNO L'EMPLOYEE
-            employee.update(e.getId(), e);
-            //IMPOSTO LO STATUS DEL DEVICE SU ASSEGNATO
-            d.setStatus(Status.ASSIGNED);
-            //AGGIRONO IL DEVICE
-            device.save(d);
-
         }
+
+        //RECUPERO LA LISTA DI DEVICES DELL'EMPLOYEE A CUI DEVO ASSEGANRE IL DEVICE
+        var actualEmployeeDevicesList= e.getDevices();
+        //AGGIUNGO ALLA LISTA IL NUOVO DEVICE SENZA TOGLIERE I DEVICES CHE C'ERANO PRIMA
+        actualEmployeeDevicesList.add(d);
+        //AGGIORNO EFFETTIVAMENTE LA LISTA
+        e.setDevices(actualEmployeeDevicesList);
+        //AGGIORNO L'EMPLOYEE
+        employee.update(e.getId(), e);
+        //IMPOSTO LO STATUS DEL DEVICE SU ASSEGNATO
+        d.setStatus(Status.ASSIGNED);
+        //AGGIRONO IL DEVICE
+        device.save(d);
     }
 }

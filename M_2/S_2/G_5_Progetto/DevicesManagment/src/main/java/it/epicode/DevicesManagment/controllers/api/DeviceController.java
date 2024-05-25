@@ -188,7 +188,7 @@ public class DeviceController {
     }
 
     //ASSEGNAZIONE DISPOSITIVO
-    @PutMapping("/assignto/")
+    @PostMapping("/assignto")
     public ResponseEntity<Tablet> assignTo (
             @RequestParam Long employeeId,
             @RequestParam Long deviceId

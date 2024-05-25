@@ -10,5 +10,5 @@ import java.util.Optional;
 public interface LaptopRepository extends
         JpaRepository<Laptop, Long>,
         PagingAndSortingRepository<Laptop, Long> {
-    Optional<Smartphone> findBySerialNumber(Long serialNumber);
+    Optional<Laptop> findBySerialNumber(Long serialNumber);
 }

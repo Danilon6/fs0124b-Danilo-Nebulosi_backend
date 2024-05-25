@@ -31,7 +31,7 @@ public class AppExceptionHandler extends ResponseEntityExceptionHandler {
             ){}
 
     @ExceptionHandler(DuplicateKeyException.class)
-    protected ResponseEntity<?> handleDuplicatedKey(DuplicateEmailException e) {
+    protected ResponseEntity<?> handleDuplicatedKey(DuplicateKeyException e) {
         return new ResponseEntity<>(new ExceptionInfo(e.getMessage(), e.key), e.status);
     }
 

@@ -37,18 +37,21 @@ public class EmployeeServiceImpl implements EmployeeService {
         var emailDuplicated = employee.findByEmail(e.getEmail());
         var usernameDuplicated = employee.findByUsername(e.getUsername());
 
-        emailDuplicated.ifPresent(
-                value -> {throw new DuplicateEmailException(e.getEmail());});
+        if (emailDuplicated.isPresent()) {
+            throw new DuplicateEmailException(e.getEmail());
+        }else if (usernameDuplicated.isPresent()) {
+            throw new DuplicateUsernameException(e.getUsername());
+        } else {
+            return employee.save(
+                    Employee.builder()
+                            .withFirstName(e.getFirstName())
+                            .withLastName(e.getLastName())
+                            .withUsername(e.getUsername())
+                            .withEmail(e.getEmail())
+                            .build());
+        }
 
-        usernameDuplicated.ifPresent(value -> {throw new DuplicateUsernameException(e.getUsername());});
 
-        return employee.save(
-                Employee.builder()
-                        .withFirstName(e.getFirstName())
-                        .withLastName(e.getLastName())
-                        .withUsername(e.getUsername())
-                        .withEmail(e.getEmail())
-                        .build());
 
     }
 
