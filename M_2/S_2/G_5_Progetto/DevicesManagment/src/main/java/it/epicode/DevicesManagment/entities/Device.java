@@ -1,5 +1,6 @@
 package it.epicode.DevicesManagment.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import it.epicode.DevicesManagment.entities.enums.Status;
 import jakarta.persistence.*;
 import lombok.*;
@@ -28,6 +29,7 @@ public class Device extends BaseEntity{
     private Status status = Status.AVAILABLE;
     @ManyToOne
     @JoinColumn(name = "assignedTo")
+    @JsonBackReference
     private Employee employee;
 
 

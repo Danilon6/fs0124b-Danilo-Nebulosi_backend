@@ -14,6 +14,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 
 @RestController
@@ -59,6 +62,14 @@ public class EmployeeController {
     ) {
       var e = employee.update(id, employeeModified);
       return new ResponseEntity<>(e, null, HttpStatus.OK);
+    }
+
+    @PutMapping("/{id}/profileImage")
+    public ResponseEntity<Employee> uploadProfileImage(
+            @PathVariable Long id,
+            @RequestParam("file") MultipartFile file) throws IOException, IOException {
+        employee.saveProfileImage(id, file);
+        return new ResponseEntity<>(employee.getById(id), null, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

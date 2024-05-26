@@ -3,12 +3,11 @@ package it.epicode.DevicesManagment.services.impl;
 
 import it.epicode.DevicesManagment.controllers.exceptions.duplicated.DuplicateSerialNumberException;
 import it.epicode.DevicesManagment.controllers.exceptions.NotFoundException;
+import it.epicode.DevicesManagment.entities.Device;
 import it.epicode.DevicesManagment.entities.Smartphone;
 import it.epicode.DevicesManagment.repositories.SmartphoneRepository;
 import it.epicode.DevicesManagment.services.dto.DeviceDTO;
 import it.epicode.DevicesManagment.services.interfaces.SmartphoneService;
-import it.epicode.DevicesManagment.utils.EntitiesUtils;
-import lombok.Builder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,8 +19,6 @@ public class SmartphoneServiceImpl implements SmartphoneService {
     @Autowired
     SmartphoneRepository smartphone;
 
-    @Autowired
-    EntitiesUtils utils;
 
     @Override
     public Page<Smartphone> getAll(Pageable p) {
@@ -50,9 +47,14 @@ public class SmartphoneServiceImpl implements SmartphoneService {
     }
 
     @Override
-    public Smartphone update(Long id, Smartphone e) {
+    public Smartphone update(Long id, Device e) {
         var toModify = this.getById(id);
-        utils.copy(e, toModify);
+        toModify.setModel(e.getModel());
+        toModify.setBrand(e.getBrand());
+        toModify.setSerialNumber(e.getSerialNumber());
+        toModify.setScreenSize(e.getScreenSize());
+        toModify.setStatus(e.getStatus());
+        toModify.setEmployee(e.getEmployee());
         return smartphone.save(toModify);
     }
 

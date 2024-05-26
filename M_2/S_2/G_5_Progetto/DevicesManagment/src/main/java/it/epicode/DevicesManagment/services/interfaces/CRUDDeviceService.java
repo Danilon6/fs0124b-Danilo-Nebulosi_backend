@@ -1,5 +1,6 @@
 package it.epicode.DevicesManagment.services.interfaces;
 
+import it.epicode.DevicesManagment.entities.Device;
 import it.epicode.DevicesManagment.services.dto.DeviceDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,7 +12,7 @@ public interface CRUDDeviceService<T>{
 
     T save(DeviceDTO e);
 
-    T update(Long id, T e);
+    T update(Long id, Device e);
 
     T delete(Long id);
 

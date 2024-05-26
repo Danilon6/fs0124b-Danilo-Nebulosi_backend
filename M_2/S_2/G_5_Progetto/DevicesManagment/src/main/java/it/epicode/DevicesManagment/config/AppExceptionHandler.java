@@ -39,7 +39,6 @@ public class AppExceptionHandler extends ResponseEntityExceptionHandler {
     protected ResponseEntity<?> handleNotFoundedElement(NotFoundException e) {
         return new ResponseEntity<>(new ExceptionInfo(e.getMessage(), String.valueOf(e.idNotFound)), HttpStatus.NOT_FOUND);
     }
-
     @ExceptionHandler(ApiValidationException.class)
     protected ResponseEntity<?> handleApiValidationException(ApiValidationException e) {
         var body = e.errorsList.stream() //
@@ -51,4 +50,8 @@ public class AppExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(body, e.status);
     }
 
+    @ExceptionHandler(AlreadyAssignedException.class)
+    protected ResponseEntity<?> handleAlreadyAssignedException(AlreadyAssignedException e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_ACCEPTABLE);
+    }
 }

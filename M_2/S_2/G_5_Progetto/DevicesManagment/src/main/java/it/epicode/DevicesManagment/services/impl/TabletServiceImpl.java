@@ -3,11 +3,11 @@ package it.epicode.DevicesManagment.services.impl;
 
 import it.epicode.DevicesManagment.controllers.exceptions.duplicated.DuplicateSerialNumberException;
 import it.epicode.DevicesManagment.controllers.exceptions.NotFoundException;
+import it.epicode.DevicesManagment.entities.Device;
 import it.epicode.DevicesManagment.entities.Tablet;
 import it.epicode.DevicesManagment.repositories.TabletRepository;
 import it.epicode.DevicesManagment.services.interfaces.TabletService;
 import it.epicode.DevicesManagment.services.dto.DeviceDTO;
-import it.epicode.DevicesManagment.utils.EntitiesUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,8 +19,6 @@ public class TabletServiceImpl implements TabletService {
     @Autowired
     TabletRepository tablet;
 
-    @Autowired
-    EntitiesUtils utils;
 
     @Override
     public Page<Tablet> getAll(Pageable p) {
@@ -49,9 +47,14 @@ public class TabletServiceImpl implements TabletService {
     }
 
     @Override
-    public Tablet update(Long id, Tablet e) {
+    public Tablet update(Long id, Device e) {
         var toModify = this.getById(id);
-        utils.copy(e, toModify);
+        toModify.setModel(e.getModel());
+        toModify.setBrand(e.getBrand());
+        toModify.setSerialNumber(e.getSerialNumber());
+        toModify.setScreenSize(e.getScreenSize());
+        toModify.setStatus(e.getStatus());
+        toModify.setEmployee(e.getEmployee());
         return tablet.save(toModify);
     }
 

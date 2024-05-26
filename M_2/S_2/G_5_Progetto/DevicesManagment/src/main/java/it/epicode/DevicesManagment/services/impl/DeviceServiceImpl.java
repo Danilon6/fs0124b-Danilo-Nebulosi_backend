@@ -1,20 +1,18 @@
 package it.epicode.DevicesManagment.services.impl;
 
+import it.epicode.DevicesManagment.controllers.exceptions.AlreadyAssignedException;
 import it.epicode.DevicesManagment.controllers.exceptions.NotFoundException;
 import it.epicode.DevicesManagment.entities.Device;
-import it.epicode.DevicesManagment.entities.Employee;
 import it.epicode.DevicesManagment.entities.enums.Status;
 import it.epicode.DevicesManagment.repositories.DeviceRepository;
-import it.epicode.DevicesManagment.repositories.EmployeeRepository;
+import it.epicode.DevicesManagment.services.dto.EmployeeDTO;
 import it.epicode.DevicesManagment.services.interfaces.DeviceService;
 import it.epicode.DevicesManagment.services.interfaces.EmployeeService;
-import it.epicode.DevicesManagment.utils.EntitiesUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -25,9 +23,6 @@ public class DeviceServiceImpl implements DeviceService {
 
     @Autowired
     EmployeeService employee;
-
-    @Autowired
-    EntitiesUtils utils;
 
     @Override
     public Page<Device> getAll(Pageable p) {
@@ -51,32 +46,28 @@ public class DeviceServiceImpl implements DeviceService {
         var e = employee.getById(employeeId);
         var d = this.getById(deviceId);
 
-        //VERIFICO S EIL DEVICE è GIA STATO ASSEGNATO
-        if (d.getStatus() != Status.AVAILABLE) {
+        //VERIFICO SE IL DEVICE è GIA STATO ASSEGNATO
+        if (d.getStatus() == Status.ASSIGNED) {
+            if (Objects.equals(d.getEmployee().getId(), e.getId())){
+                throw new AlreadyAssignedException("This device is already assigned to this employee");
+            }
             //RECUPERO L'EMPLOYEE A CUI è STATO ASSEGANTO
            var currentEmployee = d.getEmployee();
            //ESCLUDO DALL LISTA DEI DEVICE DELL'EMPLOYEE IL DEVICE CHE VOGLIO RIASSGENARE
-           var newDeviceList = currentEmployee.getDevices()
-                   .stream()
-                   .filter(device-> !Objects.equals(device.getId(), deviceId))
-                   .toList();
-           //AGGIORNO EFFETTIVAMENTE LA LISTA DELL'EMPLOYEE
-           currentEmployee.setDevices(newDeviceList);
+            currentEmployee.getDevices().remove(d);
             //AGGIORNO L'EMPLOYEE
             employee.update(currentEmployee.getId(), currentEmployee);
         }
+        //AGGIUNGO ALLA LISTA IL NUOVO DEVICE
+            e.getDevices().add(d);
+            //AGGIORNO L'EMPLOYEE
+            employee.update(e.getId(), e);
+            //IMPOSTO LO STATUS DEL DEVICE SU ASSEGNATO
+            d.setStatus(Status.ASSIGNED);
+            //IMPOSTO L'EMPLOYEE PER IL DEVICE
+            d.setEmployee(e);
+            //AGGIORNO IL DEVICE
+            device.save(d);
 
-        //RECUPERO LA LISTA DI DEVICES DELL'EMPLOYEE A CUI DEVO ASSEGANRE IL DEVICE
-        var actualEmployeeDevicesList= e.getDevices();
-        //AGGIUNGO ALLA LISTA IL NUOVO DEVICE SENZA TOGLIERE I DEVICES CHE C'ERANO PRIMA
-        actualEmployeeDevicesList.add(d);
-        //AGGIORNO EFFETTIVAMENTE LA LISTA
-        e.setDevices(actualEmployeeDevicesList);
-        //AGGIORNO L'EMPLOYEE
-        employee.update(e.getId(), e);
-        //IMPOSTO LO STATUS DEL DEVICE SU ASSEGNATO
-        d.setStatus(Status.ASSIGNED);
-        //AGGIRONO IL DEVICE
-        device.save(d);
     }
 }

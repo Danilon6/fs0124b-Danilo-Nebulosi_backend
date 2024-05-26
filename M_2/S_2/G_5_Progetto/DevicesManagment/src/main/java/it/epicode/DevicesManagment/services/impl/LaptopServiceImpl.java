@@ -2,11 +2,11 @@ package it.epicode.DevicesManagment.services.impl;
 
 import it.epicode.DevicesManagment.controllers.exceptions.duplicated.DuplicateSerialNumberException;
 import it.epicode.DevicesManagment.controllers.exceptions.NotFoundException;
+import it.epicode.DevicesManagment.entities.Device;
 import it.epicode.DevicesManagment.entities.Laptop;
 import it.epicode.DevicesManagment.repositories.LaptopRepository;
 import it.epicode.DevicesManagment.services.dto.DeviceDTO;
 import it.epicode.DevicesManagment.services.interfaces.LaptopService;
-import it.epicode.DevicesManagment.utils.EntitiesUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,8 +18,6 @@ public class LaptopServiceImpl implements LaptopService {
     @Autowired
     LaptopRepository laptop;
 
-    @Autowired
-    EntitiesUtils utils;
 
     @Override
     public Page<Laptop> getAll(Pageable p) {
@@ -47,9 +45,14 @@ public class LaptopServiceImpl implements LaptopService {
     }
 
     @Override
-    public Laptop update(Long id, Laptop e) {
+    public Laptop update(Long id, Device e) {
         var toModify = this.getById(id);
-        utils.copy(e, toModify);
+        toModify.setModel(e.getModel());
+        toModify.setBrand(e.getBrand());
+        toModify.setSerialNumber(e.getSerialNumber());
+        toModify.setScreenSize(e.getScreenSize());
+        toModify.setStatus(e.getStatus());
+        toModify.setEmployee(e.getEmployee());
         return laptop.save(toModify);
     }
 
