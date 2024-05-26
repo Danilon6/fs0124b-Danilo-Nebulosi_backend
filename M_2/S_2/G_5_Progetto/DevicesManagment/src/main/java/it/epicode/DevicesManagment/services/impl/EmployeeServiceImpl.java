@@ -1,5 +1,7 @@
 package it.epicode.DevicesManagment.services.impl;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import it.epicode.DevicesManagment.controllers.exceptions.duplicated.DuplicateEmailException;
 import it.epicode.DevicesManagment.controllers.exceptions.duplicated.DuplicateUsernameException;
 import it.epicode.DevicesManagment.controllers.exceptions.NotFoundException;
@@ -8,17 +10,15 @@ import it.epicode.DevicesManagment.repositories.EmployeeRepository;
 import it.epicode.DevicesManagment.services.dto.EmployeeDTO;
 import it.epicode.DevicesManagment.services.interfaces.EmployeeService;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.mapping.Map;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 
 
 @Service
@@ -28,7 +28,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Autowired
     EmployeeRepository employee;
 
-    private final Path directory = Paths.get("src/main/java/it/epicode/DevicesManagment/uploads");
+    @Value("${CLOUDINARY_URL}")
+    private String cloudinaryKey;
 
     @Override
     public Page<Employee> getAll(Pageable p) {
@@ -81,14 +82,15 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Employee saveProfileImage(Long id, MultipartFile file) throws IOException {
         Employee e = this.getById(id);
-        if (!Files.exists(directory)) {
-            Files.createDirectories(directory);
-        }
-        String filename = id + "-" + file.getOriginalFilename();
-        Path destinationFile = this.directory.resolve(filename);
 
-        Files.copy(file.getInputStream(), destinationFile, StandardCopyOption.REPLACE_EXISTING);
-        e.setProfileImagePath(destinationFile.toString());
-        return employee.save(e);
+        Cloudinary cloudinary = new Cloudinary(cloudinaryKey);
+
+            var image = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap());
+
+            String imageUrl = (String) image.get("url");
+
+            e.setProfileImagePath(imageUrl);
+            return employee.save(e);
+
     }
 }
