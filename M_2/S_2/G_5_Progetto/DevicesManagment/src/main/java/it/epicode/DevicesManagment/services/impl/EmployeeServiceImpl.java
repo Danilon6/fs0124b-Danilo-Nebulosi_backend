@@ -91,6 +91,5 @@ public class EmployeeServiceImpl implements EmployeeService {
 
             e.setProfileImagePath(imageUrl);
             return employee.save(e);
-
     }
 }
