@@ -3,6 +3,8 @@ package it.epicode.DevicesManagment.businesslayer.services.impl;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import it.epicode.DevicesManagment.businesslayer.services.dto.RegisteredEmployeeDto;
+import it.epicode.DevicesManagment.datalayer.entities.RoleEntity;
+import it.epicode.DevicesManagment.datalayer.repositories.RoleRepository;
 import it.epicode.DevicesManagment.presentationlayer.controllers.exceptions.InvalidLoginException;
 import it.epicode.DevicesManagment.presentationlayer.controllers.exceptions.duplicated.DuplicateEmailException;
 import it.epicode.DevicesManagment.presentationlayer.controllers.exceptions.duplicated.DuplicateUsernameException;
@@ -16,12 +18,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 
 @Service
@@ -33,6 +37,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
     MapperImpl mapper;
+
+    @Autowired
+    PasswordEncoder encoder;
+
+    @Autowired
+    RoleRepository roles;
 
     @Value("${CLOUDINARY_URL}")
     private String cloudinaryKey;
@@ -57,24 +67,34 @@ public class EmployeeServiceImpl implements EmployeeService {
         }else if (usernameDuplicated.isPresent()) {
             throw new DuplicateUsernameException(e.getUsername());
         } else {
-            var savedEmployee = employee.save(mapper.convertFrom(e));
 
-            return RegisteredEmployeeDto.builder()
-                    .withId(savedEmployee.getId())
-                    .withCreatedAt(savedEmployee.getCreatedAt())
-                    .withFirstName(savedEmployee.getFirstName())
-                    .withLastName(savedEmployee.getLastName())
-                    .withUsername(savedEmployee.getUsername())
-                    .withEmail(savedEmployee.getEmail())
-                    .build();
-        }
+                var emp = mapper.convertFrom(e);
+                var p = encoder.encode(e.getPassword());
+                emp.setPassword(p);
+                if (e.getRoles() != null)
+                    Stream.of(e.getRoles().split(",")).forEach(r ->
+                            emp.getRoles().add(roles.findOneByName(r)
+                                    .orElse(roles.save(RoleEntity.builder().withName(r).build()))));
+                employee.save(emp);
+
+                return RegisteredEmployeeDto.builder()
+                        .withId(emp.getId())
+                        .withCreatedAt(emp.getCreatedAt())
+                        .withFirstName(emp.getFirstName())
+                        .withLastName(emp.getLastName())
+                        .withUsername(emp.getUsername())
+                        .withEmail(emp.getEmail())
+                        .build();
+    }
     }
 
     @Override
     public Optional<RegisteredEmployeeDto> login(String username, String password) {
 
+        var hashedPassword= encoder.encode(password);
         try {
-        var e = employee.findOneByUsernameAndPassword(username, password).orElseThrow();
+            var a = encoder.matches(password, hashedPassword);
+        var e = employee.findOneByUsernameAndPassword(username, hashedPassword).orElseThrow();
             return Optional.of(RegisteredEmployeeDto.builder()
                             .withId(e.getId())
                             .withCreatedAt(e.getCreatedAt())

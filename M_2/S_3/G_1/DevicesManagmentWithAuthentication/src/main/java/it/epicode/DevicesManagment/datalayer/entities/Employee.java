@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -26,11 +27,16 @@ public class Employee extends BaseEntity{
     private String username;
     @Column(length = 40, nullable = false, unique = true)
     private String email;
-    @Column(length = 25, nullable = false)
+    @Column(length = 125, nullable = false)
     private String password;
     @OneToMany(mappedBy = "employee")
     @JsonManagedReference
     private List<Device> devices;
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    private List<RoleEntity> roles = new ArrayList<>();
 
     private String profileImagePath;
+
+
+
 }

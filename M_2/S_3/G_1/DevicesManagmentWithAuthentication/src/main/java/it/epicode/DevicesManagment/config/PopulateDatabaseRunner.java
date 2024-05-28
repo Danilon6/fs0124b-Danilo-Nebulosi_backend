@@ -36,16 +36,17 @@ public class PopulateDatabaseRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
             log.info("Popoulating database");
-        IntStream.range(0,10)
-                .mapToObj(
-                        n-> EmployeeDTO.builder()
-                                .withFirstName(faker.name().firstName())
-                                .withLastName(faker.name().lastName())
-                                .withUsername(faker.name().username())
-                                .withEmail(faker.internet().emailAddress())
-                                .withPassword(faker.internet().password())
-                                .build()
-                ).forEach(employee::save);
+//        IntStream.range(0,10)
+//                .mapToObj(
+//                        n-> EmployeeDTO.builder()
+//                                .withFirstName(faker.name().firstName())
+//                                .withLastName(faker.name().lastName())
+//                                .withUsername(faker.name().username())
+//                                .withEmail(faker.internet().emailAddress())
+//                                .withPassword(faker.internet().password())
+//                                .withRoles("user")
+//                                .build()
+//                ).forEach(employee::save);
 
         IntStream.range(0,10)
                         .mapToObj(
