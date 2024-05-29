@@ -32,7 +32,7 @@ public class Employee extends BaseEntity{
     @OneToMany(mappedBy = "employee")
     @JsonManagedReference
     private List<Device> devices;
-    @ManyToMany(cascade = CascadeType.PERSIST)
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private List<RoleEntity> roles = new ArrayList<>();
 
     private String profileImagePath;

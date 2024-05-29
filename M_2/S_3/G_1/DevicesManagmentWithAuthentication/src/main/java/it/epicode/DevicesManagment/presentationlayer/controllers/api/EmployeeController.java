@@ -47,6 +47,7 @@ public class EmployeeController {
                         .withUsername(employeeToSave.username())
                         .withEmail(employeeToSave.email())
                         .withPassword(employeeToSave.password())
+                        .withRoles(employeeToSave.roles())
                         .build());
         return new ResponseEntity<>(e, null, HttpStatus.CREATED);
     }

@@ -20,6 +20,8 @@ public record EmployeeRequest(
         String email,
         @NotBlank(message = "La password non può contenere solo spazi vuoti")
         @Size(max = 125, message ="La password è troppo lunga max 20 caratteri")
-        String password
+        String password,
+        @NotBlank(message = "Inserisci almeno un ruolo per questo employee")
+        String roles
 ) {
 }
