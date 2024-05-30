@@ -1,8 +1,10 @@
 package it.epicode.DevicesManagment.businesslayer.services.impl;
 
 import it.epicode.DevicesManagment.businesslayer.services.dto.EmployeeDTO;
+import it.epicode.DevicesManagment.businesslayer.services.dto.RegisteredEmployeeDto;
 import it.epicode.DevicesManagment.businesslayer.services.interfaces.Mapper;
 import it.epicode.DevicesManagment.datalayer.entities.Employee;
+import it.epicode.DevicesManagment.datalayer.entities.RoleEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -14,13 +16,14 @@ public class MapperImpl implements Mapper<EmployeeDTO, Employee> {
     PasswordEncoder encoder;
 
     @Override
-    public EmployeeDTO convertTo(Employee destination) {
-        return EmployeeDTO.builder()
+    public RegisteredEmployeeDto convertTo(Employee destination) {
+        return RegisteredEmployeeDto.builder()
+                .withId(destination.getId())
                 .withFirstName(destination.getFirstName())
                 .withLastName(destination.getLastName())
                 .withUsername(destination.getUsername())
                 .withEmail(destination.getEmail())
-                .withPassword(destination.getPassword())
+                .withRoles(destination.getRoles().stream().map(RoleEntity::getName).toList())
                 .build();
     }
 
