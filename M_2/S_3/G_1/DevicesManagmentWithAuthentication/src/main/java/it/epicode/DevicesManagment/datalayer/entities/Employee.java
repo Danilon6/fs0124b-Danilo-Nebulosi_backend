@@ -33,7 +33,8 @@ public class Employee extends BaseEntity{
     @JsonManagedReference
     private List<Device> devices;
     @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    private List<RoleEntity> roles = new ArrayList<>();
+    @JsonManagedReference
+    private final List<RoleEntity> roles = new ArrayList<>();
 
     private String profileImagePath;
 
