@@ -1,5 +1,7 @@
 package it.epicode.Events.datalayer.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import it.epicode.Events.datalayer.entities.enums.Place;
 import jakarta.persistence.*;
 import lombok.*;
@@ -28,14 +30,9 @@ public class Event extends BaseEntity{
     @Builder.Default
     private LocalDate date = LocalDate.now();
 
-    private Place place;//FORSE SAREBBE MEGLIO FAR EUN ENUM CON 10 LOCALITA
+    private Place place;
 
     @Column(nullable = false)
-    private int maxPrticipants;
-
-    @Column(nullable = false)
-
-    @ManyToOne
-    private User manager;
+    private int maxParticipants;
 
 }

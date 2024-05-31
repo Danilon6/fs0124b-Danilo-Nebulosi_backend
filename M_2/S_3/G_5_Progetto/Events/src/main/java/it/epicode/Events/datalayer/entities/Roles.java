@@ -1,5 +1,6 @@
 package it.epicode.Events.datalayer.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import it.epicode.Events.datalayer.entities.enums.RolesType;
 import jakarta.persistence.*;
 import lombok.*;
@@ -20,5 +21,6 @@ public class Roles extends BaseEntity{
     private Long id;
 
     @Enumerated(EnumType.STRING)
+    @JsonBackReference
     private RolesType roleType;
 }
