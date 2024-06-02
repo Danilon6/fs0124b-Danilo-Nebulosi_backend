@@ -107,9 +107,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<RegisteredUserDTO> getById(long id) {
-        var u = user.findById(id).orElseThrow(()-> new NotFoundException(id));
-        return Optional.ofNullable(mapRegisteredUser.map(u));
+    public RegisteredUserDTO getById(long id) {
+        return mapRegisteredUser.map(user.findById(id).orElseThrow(()-> new NotFoundException(id)));
     }
 
     @Override
@@ -117,21 +116,6 @@ public class UserServiceImpl implements UserService {
         return user.findAll(p);
     }
 
-    @Override
-    public RegisteredUserDTO update(Long id, User userModified) {
-        try {
-            var u = user.findById(id).orElseThrow(()-> new NotFoundException(id));
-
-            user.save(u);
-            return mapRegisteredUser.map(u);
-        } catch (NoSuchElementException e) {
-            log.error(String.format("Cannot find user with id = %s", id), e);
-            throw new RuntimeException("Cannot find user...");
-        } catch (Exception e) {
-            log.error(String.format("Error updating user with id = %s", id), e);
-            throw new RuntimeException();
-        }
-    }
 
     @Override
     public RegisteredUserDTO delete(Long id) {
