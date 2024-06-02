@@ -15,7 +15,7 @@ public interface UserService {
 
     Optional<LoginResponseDTO> login(String username, String password);
 
-    Optional<RegisteredUserDTO> get(long id);
+    Optional<RegisteredUserDTO> getById(long id);
 
     Page<User> getAll(Pageable p);
 

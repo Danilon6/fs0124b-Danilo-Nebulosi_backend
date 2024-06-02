@@ -9,7 +9,6 @@ import it.epicode.Events.datalayer.repositories.UserRepository;
 import it.epicode.Events.presentationlayer.controllers.api.exceptions.ExiperedEventException;
 import it.epicode.Events.presentationlayer.controllers.api.exceptions.NoAvailableSeatsException;
 import it.epicode.Events.presentationlayer.controllers.api.exceptions.NotFoundException;
-import it.epicode.Events.presentationlayer.controllers.utility.EntitiesUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -32,8 +31,6 @@ public class AttendanceServiceImpl implements CRUDService<Attendance, Attendance
     @Autowired
     EventRepository event;
 
-    @Autowired
-    EntitiesUtils utils;
 
     @Override
     public Page<Attendance> getAll(Pageable p) {
@@ -49,9 +46,9 @@ public class AttendanceServiceImpl implements CRUDService<Attendance, Attendance
     public Attendance save(AttendanceDTO e) {
         var participant = user.findById(e.getUser_id()).orElseThrow(()-> new NotFoundException(e.getUser_id()));
         var eventEntity = event.findById(e.getEvent_id()).orElseThrow(()-> new NotFoundException(e.getEvent_id()));
-        var avaliableSeat = attendance.findByEventId(e.getEvent_id());
+        var availableSeat = attendance.findByEventId(e.getEvent_id());
 
-        if (avaliableSeat.size() < eventEntity.getMaxParticipants()) {
+        if (availableSeat.size() < eventEntity.getMaxParticipants()) {
 
             if (eventEntity.getDate().isAfter(LocalDate.now()) || eventEntity.getDate().isEqual(LocalDate.now())) {
                 return attendance.save(Attendance.builder()
@@ -69,17 +66,7 @@ public class AttendanceServiceImpl implements CRUDService<Attendance, Attendance
 
     @Override
     public Attendance update(Long id, Attendance attendanceModified) {
-        try {
-            var a = attendance.findById(id).orElseThrow(()-> new NotFoundException(id));
-            utils.copy(attendanceModified, a);
-            return attendance.save(a);
-        } catch (NoSuchElementException e) {
-            log.error(String.format("Cannot find attendance with id = %s", id), e);
-            throw new RuntimeException("Cannot find attendance...");
-        } catch (Exception e) {
-            log.error(String.format("Error updating attendance with id = %s", id), e);
-            throw new RuntimeException();
-        }
+        return null; //NOT IMPLEMENTED - NOT NECESSARY
     }
 
     @Override

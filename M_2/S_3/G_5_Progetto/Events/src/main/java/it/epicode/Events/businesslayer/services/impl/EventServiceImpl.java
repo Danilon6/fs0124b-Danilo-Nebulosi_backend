@@ -7,6 +7,8 @@ import it.epicode.Events.datalayer.entities.enums.Place;
 import it.epicode.Events.datalayer.repositories.EventRepository;
 import it.epicode.Events.datalayer.repositories.UserRepository;
 import it.epicode.Events.presentationlayer.controllers.api.exceptions.NotFoundException;
+import it.epicode.Events.presentationlayer.controllers.api.exceptions.duplicated.DuplicateTitleException;
+import it.epicode.Events.presentationlayer.controllers.api.models.EventModel;
 import it.epicode.Events.presentationlayer.controllers.utility.EntitiesUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +29,6 @@ public class EventServiceImpl implements CRUDService<Event, EventDTO> {
     @Autowired
     UserRepository user;
 
-    @Autowired
-    EntitiesUtils utils;
 
     @Override
     public Page<Event> getAll(Pageable p) {
@@ -43,12 +43,19 @@ public class EventServiceImpl implements CRUDService<Event, EventDTO> {
     @Override
     public Event save(EventDTO e) {
         var placeToEnum = Place.valueOf(e.getPlace());
-        return event.save(Event.builder()
-                        .withTitle(e.getTitle())
-                        .withDescription(e.getDescription())
-                        .withPlace(placeToEnum)
-                        .withMaxParticipants(e.getMaxPrticipants())
-                        .build());
+        var duplicateTitle = event.findOneByTitle(e.getTitle());
+
+        if (duplicateTitle.isPresent()) {
+            throw new DuplicateTitleException(e.getTitle());
+        }else {
+            return event.save(Event.builder()
+                    .withTitle(e.getTitle())
+                    .withDescription(e.getDescription())
+                    .withPlace(placeToEnum)
+                    .withMaxParticipants(e.getMaxPrticipants())
+                    .build());
+        }
+
     }
 
     @Override
@@ -71,6 +78,7 @@ public class EventServiceImpl implements CRUDService<Event, EventDTO> {
         }
         return event.save(toModify);
 
+
 //        try {
 //            var e = event.findById(id).orElseThrow();
 //            utils.copy(eventModified, e);
@@ -82,6 +90,9 @@ public class EventServiceImpl implements CRUDService<Event, EventDTO> {
 //            log.error(String.format("Error updating event with id = %s", id), e);
 //            throw new RuntimeException();
 //        }
+
+
+
     }
 
     @Override

@@ -24,7 +24,7 @@ public class Event extends BaseEntity{
 
     @Column(length = 50, nullable = false, unique = true)
     private String title;
-    @Column(length = 250, nullable = false, unique = true)
+    @Column(length = 250, nullable = false)
     private String description;
 
     @Builder.Default

@@ -15,7 +15,6 @@ import it.epicode.Events.presentationlayer.controllers.api.exceptions.InvalidLog
 import it.epicode.Events.presentationlayer.controllers.api.exceptions.NotFoundException;
 import it.epicode.Events.presentationlayer.controllers.api.exceptions.duplicated.DuplicateEmailException;
 import it.epicode.Events.presentationlayer.controllers.api.exceptions.duplicated.DuplicateUsernameException;
-import it.epicode.Events.presentationlayer.controllers.utility.EntitiesUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -27,7 +26,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -41,8 +39,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserRepository user;
 
-    @Autowired
-    EntitiesUtils utils;
 
     @Autowired
     private RolesRepository roles; //PERCHE PRIVATE? CHIEDERE A NELLO
@@ -87,7 +83,6 @@ public class UserServiceImpl implements UserService {
             } catch (Exception e) {
                 log.error(String.format("Exception saving user %s", user), e);
                 throw new RuntimeException();
-                //throw new PersistEntityException(user);
             }
         }
     }
@@ -112,7 +107,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<RegisteredUserDTO> get(long id) {
+    public Optional<RegisteredUserDTO> getById(long id) {
         var u = user.findById(id).orElseThrow(()-> new NotFoundException(id));
         return Optional.ofNullable(mapRegisteredUser.map(u));
     }
@@ -126,7 +121,7 @@ public class UserServiceImpl implements UserService {
     public RegisteredUserDTO update(Long id, User userModified) {
         try {
             var u = user.findById(id).orElseThrow(()-> new NotFoundException(id));
-            utils.copy(userModified, u);
+
             user.save(u);
             return mapRegisteredUser.map(u);
         } catch (NoSuchElementException e) {

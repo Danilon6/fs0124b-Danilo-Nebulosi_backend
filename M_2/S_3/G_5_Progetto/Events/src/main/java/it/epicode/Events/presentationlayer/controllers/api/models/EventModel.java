@@ -2,6 +2,7 @@ package it.epicode.Events.presentationlayer.controllers.api.models;
 
 import it.epicode.Events.presentationlayer.controllers.utility.EqualsTo;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 
@@ -15,6 +16,7 @@ public record EventModel(
         @EqualsTo(values = {"ROMA", "MILANO", "TORINO", "NAPOLI", "FIRENZE", "TRIESTE", "VENEZIA"})
         String place,
         @Positive(message = "Non puo inserire un numero di aprtecipanti negativo")
+        @NotNull
         int maxParticipants
 ) {
 }
