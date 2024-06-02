@@ -1,5 +1,6 @@
 package it.epicode.DevicesManagment.presentationlayer.controllers.api;
 
+import it.epicode.DevicesManagment.businesslayer.services.dto.LoginResponseDto;
 import it.epicode.DevicesManagment.businesslayer.services.dto.RegisteredEmployeeDto;
 import it.epicode.DevicesManagment.presentationlayer.controllers.exceptions.ApiValidationException;
 import it.epicode.DevicesManagment.presentationlayer.controllers.models.EmployeeRequest;
@@ -53,7 +54,7 @@ public class EmployeeController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<RegisteredEmployeeDto> loginEmployee (@RequestBody @Validated LoginEmployee loginEmployee, BindingResult validator) {
+    public ResponseEntity<LoginResponseDto> loginEmployee (@RequestBody @Validated LoginEmployee loginEmployee, BindingResult validator) {
         if (validator.hasErrors()) {
             throw new ApiValidationException(validator.getAllErrors());
         }

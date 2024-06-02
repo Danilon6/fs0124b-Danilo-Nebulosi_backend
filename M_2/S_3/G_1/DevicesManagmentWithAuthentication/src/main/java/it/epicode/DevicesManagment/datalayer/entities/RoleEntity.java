@@ -3,6 +3,7 @@ package it.epicode.DevicesManagment.datalayer.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -32,5 +33,6 @@ public class RoleEntity extends BaseEntity {
 	@Column(length = 15, unique = true)
 	private String name;
 	@ManyToMany(mappedBy = "roles")
+	@JsonBackReference
 	private final List<Employee> employees = new ArrayList<>();
 }
