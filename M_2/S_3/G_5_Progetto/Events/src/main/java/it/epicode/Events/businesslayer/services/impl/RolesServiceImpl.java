@@ -13,8 +13,6 @@ public class RolesServiceImpl implements RolesService {
     @Autowired
     RolesRepository roles;
 
-    //SERVE DAVVERO? CHIEDERE A NELLO
-
     @Override
     public Roles save(String role) {
         var roleToEnumType = RolesType.valueOf(role);
