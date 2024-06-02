@@ -32,12 +32,12 @@ public class SecurityUserDetails implements UserDetails {
 	private boolean enabled = true;
 
 	public static SecurityUserDetails build(User user) {
-		var authorities = user.getRoles().stream() //
+		var authorities = user.getRoles().stream()
 				.map(r -> new SimpleGrantedAuthority(String.valueOf(r.getRoleType()))).toList();
-		return SecurityUserDetails.builder() //
-				.withUsername(user.getUsername()) //
-				.withPassword(user.getPassword()) //
-				.withAuthorities(authorities) //
+		return SecurityUserDetails.builder()
+				.withUsername(user.getUsername())
+				.withPassword(user.getPassword())
+				.withAuthorities(authorities)
 				.build();
 	}
 }

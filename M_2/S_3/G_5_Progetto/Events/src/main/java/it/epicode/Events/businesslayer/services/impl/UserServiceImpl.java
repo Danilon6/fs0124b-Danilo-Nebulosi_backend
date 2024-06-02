@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Autowired
-    private RolesRepository roles; //PERCHE PRIVATE? CHIEDERE A NELLO
+    private RolesRepository roles;
 
     @Autowired
     private AuthenticationManager auth;

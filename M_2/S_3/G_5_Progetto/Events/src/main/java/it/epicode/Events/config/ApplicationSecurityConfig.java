@@ -50,16 +50,12 @@ public class ApplicationSecurityConfig {
 				.authorizeHttpRequests(authorize ->
 				authorize
 
-						//.requestMatchers("/api/user/login").permitAll()
-						//.requestMatchers(HttpMethod.GET, "/api/event").authenticated()
-						//.requestMatchers(HttpMethod.POST, "/api/event").hasAuthority(String.valueOf(RolesType.ADMIN))
-						//.requestMatchers(HttpMethod.PUT, "/api/event").hasAuthority(String.valueOf(RolesType.ADMIN))
-						//.requestMatchers(HttpMethod.DELETE, "/api/event").hasAuthority(String.valueOf(RolesType.ADMIN))
-						//.requestMatchers(HttpMethod.POST, "/api/user").permitAll()
-						//.requestMatchers( HttpMethod.GET, "/api/event").authenticated()
-
-						//.requestMatchers("/**").authenticated()
-						.requestMatchers("/**").permitAll()
+						.requestMatchers("/api/user/login").permitAll()
+						.requestMatchers(HttpMethod.POST, "/api/user").permitAll()
+						.requestMatchers(HttpMethod.POST, "/api/event").hasAuthority(String.valueOf(RolesType.ADMIN))
+						.requestMatchers(HttpMethod.PUT, "/api/event").hasAuthority(String.valueOf(RolesType.ADMIN))
+						.requestMatchers(HttpMethod.DELETE, "/api/event").hasAuthority(String.valueOf(RolesType.ADMIN))
+						.requestMatchers("/**").authenticated()
 				)
 				.httpBasic(Customizer.withDefaults())
 				.sessionManagement(

@@ -3,8 +3,10 @@ package it.epicode.Events.presentationlayer.controllers.api;
 import it.epicode.Events.businesslayer.services.dto.EventDTO;
 import it.epicode.Events.businesslayer.services.impl.EventServiceImpl;
 import it.epicode.Events.businesslayer.services.interfaces.CRUDService;
+import it.epicode.Events.businesslayer.services.interfaces.EventService;
 import it.epicode.Events.datalayer.entities.Event;
 
+import it.epicode.Events.datalayer.entities.enums.Place;
 import it.epicode.Events.presentationlayer.controllers.api.exceptions.ApiValidationException;
 import it.epicode.Events.presentationlayer.controllers.api.models.EventModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +25,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("api/event")
 public class EventController {
     @Autowired
-    //@Qualifier("event")
-    CRUDService<Event, EventDTO> event;
+    EventService event;
 
     @GetMapping
     public ResponseEntity<Page<Event>> getEvents (Pageable p) {
@@ -59,9 +60,16 @@ public class EventController {
     @PutMapping("{id}")
     public ResponseEntity<Event> updateEvent (
             @PathVariable Long id,
-            @RequestBody Event eventModified
-    ) {
-        var e = event.update(id, eventModified);
+            @RequestBody @Validated EventModel eventModified, BindingResult validator) {
+        if (validator.hasErrors()) {
+            throw new ApiValidationException(validator.getAllErrors());
+        }
+        var e = event.update(id, Event.builder()
+                        .withTitle(eventModified.title())
+                        .withDescription(eventModified.description())
+                        .withPlace(Place.valueOf(eventModified.place()))
+                        .withMaxParticipants(eventModified.maxParticipants())
+                .build());
         return new ResponseEntity<>(e, null, HttpStatus.OK);
     }
 

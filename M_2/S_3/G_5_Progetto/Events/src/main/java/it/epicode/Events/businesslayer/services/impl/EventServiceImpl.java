@@ -2,6 +2,7 @@ package it.epicode.Events.businesslayer.services.impl;
 
 import it.epicode.Events.businesslayer.services.dto.EventDTO;
 import it.epicode.Events.businesslayer.services.interfaces.CRUDService;
+import it.epicode.Events.businesslayer.services.interfaces.EventService;
 import it.epicode.Events.datalayer.entities.Event;
 import it.epicode.Events.datalayer.entities.enums.Place;
 import it.epicode.Events.datalayer.repositories.EventRepository;
@@ -21,7 +22,7 @@ import java.util.NoSuchElementException;
 
 @Service("event")
 @Slf4j
-public class EventServiceImpl implements CRUDService<Event, EventDTO> {
+public class EventServiceImpl implements EventService {
 
     @Autowired
     EventRepository event;
@@ -77,22 +78,6 @@ public class EventServiceImpl implements CRUDService<Event, EventDTO> {
             toModify.setMaxParticipants(eventModified.getMaxParticipants());
         }
         return event.save(toModify);
-
-
-//        try {
-//            var e = event.findById(id).orElseThrow();
-//            utils.copy(eventModified, e);
-//            return event.save(e);
-//        } catch (NoSuchElementException e) {
-//            log.error(String.format("Cannot find event with id = %s", id), e);
-//            throw new RuntimeException("Cannot find event...");
-//        } catch (Exception e) {
-//            log.error(String.format("Error updating event with id = %s", id), e);
-//            throw new RuntimeException();
-//        }
-
-
-
     }
 
     @Override

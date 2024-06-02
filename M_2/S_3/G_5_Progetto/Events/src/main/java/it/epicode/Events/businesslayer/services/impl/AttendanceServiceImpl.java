@@ -1,6 +1,7 @@
 package it.epicode.Events.businesslayer.services.impl;
 
 import it.epicode.Events.businesslayer.services.dto.AttendanceDTO;
+import it.epicode.Events.businesslayer.services.interfaces.AttendanceService;
 import it.epicode.Events.businesslayer.services.interfaces.CRUDService;
 import it.epicode.Events.datalayer.entities.Attendance;
 import it.epicode.Events.datalayer.repositories.AttendanceRepository;
@@ -9,6 +10,7 @@ import it.epicode.Events.datalayer.repositories.UserRepository;
 import it.epicode.Events.presentationlayer.controllers.api.exceptions.ExiperedEventException;
 import it.epicode.Events.presentationlayer.controllers.api.exceptions.NoAvailableSeatsException;
 import it.epicode.Events.presentationlayer.controllers.api.exceptions.NotFoundException;
+import it.epicode.Events.presentationlayer.controllers.api.exceptions.alreadyBookedBySameUserException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,11 +18,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service("attendance")
 @Slf4j
-public class AttendanceServiceImpl implements CRUDService<Attendance, AttendanceDTO> {
+public class AttendanceServiceImpl implements AttendanceService {
 
     @Autowired
     AttendanceRepository attendance;
@@ -47,14 +50,20 @@ public class AttendanceServiceImpl implements CRUDService<Attendance, Attendance
         var participant = user.findById(e.getUser_id()).orElseThrow(()-> new NotFoundException(e.getUser_id()));
         var eventEntity = event.findById(e.getEvent_id()).orElseThrow(()-> new NotFoundException(e.getEvent_id()));
         var availableSeat = attendance.findByEventId(e.getEvent_id());
-
+        var alreadyBookedBySameUser = attendance.findByUserIdAndEventId(e.getUser_id(), e.getEvent_id());
         if (availableSeat.size() < eventEntity.getMaxParticipants()) {
 
             if (eventEntity.getDate().isAfter(LocalDate.now()) || eventEntity.getDate().isEqual(LocalDate.now())) {
-                return attendance.save(Attendance.builder()
-                        .withUser(participant)
-                        .withEvent(eventEntity)
-                        .build());
+
+                if (alreadyBookedBySameUser.isEmpty()){
+                    return attendance.save(Attendance.builder()
+                            .withUser(participant)
+                            .withEvent(eventEntity)
+                            .build());
+                }else {
+                    throw new alreadyBookedBySameUserException(e.getUser_id(), e.getEvent_id());
+                }
+
             }else {
                 throw new ExiperedEventException(eventEntity);
             }
@@ -82,5 +91,11 @@ public class AttendanceServiceImpl implements CRUDService<Attendance, Attendance
             log.error(String.format("Error deleting attendance with id = %s", id), e);
             throw new RuntimeException();
         }
+    }
+
+    @Override
+    public List<Attendance> getAllByUserId(Long id) {
+        var u = user.findById(id).orElseThrow(()-> new NotFoundException(id));
+        return attendance.findByUserId(id);
     }
 }

@@ -26,14 +26,13 @@ public class JwtUtils {
 		Key key = Keys.hmacShaKeyFor(keyBytes);
 
 		var user = (SecurityUserDetails) auth.getPrincipal();
-		var token = Jwts.builder()
+        return Jwts.builder()
 				.subject(user.getUsername())
 				.issuedAt(new Date())
 				.issuer("MySpringApplication")
 				.expiration(new Date(new Date().getTime() + expirationMs))
 				.signWith(key)
 				.compact();
-		return token;
 	}
 
 	public boolean isTokenValid(String token) {
@@ -51,9 +50,8 @@ public class JwtUtils {
 	public String getUsernameFromToken(String token) {
 		byte[] keyBytes = securityKey.getBytes();
 		SecretKey key = Keys.hmacShaKeyFor(keyBytes);
-		var username = Jwts.parser()
+        return Jwts.parser()
 				.verifyWith(key).build()
 				.parseSignedClaims(token).getPayload().getSubject();
-		return username;
 	}
 }

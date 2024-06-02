@@ -2,6 +2,7 @@ package it.epicode.Events.presentationlayer.controllers.api;
 
 import it.epicode.Events.businesslayer.services.dto.AttendanceDTO;
 import it.epicode.Events.businesslayer.services.dto.EventDTO;
+import it.epicode.Events.businesslayer.services.interfaces.AttendanceService;
 import it.epicode.Events.businesslayer.services.interfaces.CRUDService;
 import it.epicode.Events.datalayer.entities.Attendance;
 import it.epicode.Events.datalayer.entities.Event;
@@ -17,12 +18,14 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("api/attendance")
 public class AttendanceController {
 
     @Autowired
-    CRUDService<Attendance, AttendanceDTO> attendance;
+    AttendanceService attendance;
 
 
     @GetMapping
@@ -31,6 +34,14 @@ public class AttendanceController {
         var headers = new HttpHeaders();
         headers.add("Totale", String.valueOf(allAttendance.getTotalElements()));
         return new ResponseEntity<>(allAttendance, headers, HttpStatus.OK);
+    }
+
+    @GetMapping("user/{id}")
+    public ResponseEntity<List<Attendance>> getAllFromSameUser (@PathVariable Long id){
+        var allAttendanceFromSameUser = attendance.getAllByUserId(id);
+        var headers = new HttpHeaders();
+        headers.add("Totale", String.valueOf(allAttendanceFromSameUser.size()));
+        return new ResponseEntity<>(allAttendanceFromSameUser, headers, HttpStatus.OK);
     }
 
     @GetMapping("{id}")

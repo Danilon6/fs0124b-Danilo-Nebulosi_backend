@@ -30,6 +30,12 @@ public class AppExceptionHandler extends ResponseEntityExceptionHandler {
             String password
             ){}
 
+    public record ExceptionAlreadyBookedInfo (
+            String message,
+            Long user_id,
+            Long event_id
+    ) {}
+
     @ExceptionHandler(DuplicateKeyException.class)
     protected ResponseEntity<?> handleDuplicatedKey(DuplicateKeyException e) {
         return new ResponseEntity<>(new ExceptionInfo(e.getMessage(), e.key), e.status);
@@ -65,5 +71,10 @@ public class AppExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(ExiperedEventException.class)
     protected ResponseEntity<?> handleExiperedEvent(ExiperedEventException e) {
         return new ResponseEntity<>(new ExceptionInfo(e.getMessage(), String.valueOf(e.key)), HttpStatus.NOT_ACCEPTABLE);
+    }
+
+    @ExceptionHandler(alreadyBookedBySameUserException.class)
+    protected ResponseEntity<?> handleAlreadyBookedBySameUser(alreadyBookedBySameUserException e) {
+        return new ResponseEntity<>(new ExceptionAlreadyBookedInfo(e.getMessage(), e.user_id, e.event_id), HttpStatus.NOT_ACCEPTABLE);
     }
 }
