@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>it.epicode</groupId>
-	<artifactId>DevicesManagment</artifactId>
+	<artifactId>Events</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>DevicesManagment</name>
-	<description>devices managment for a company</description>
+	<name>EventsManagment</name>
+	<description>Event managment with API</description>
 	<properties>
 		<java.version>22</java.version>
 	</properties>
@@ -50,11 +50,6 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>com.cloudinary</groupId>
-			<artifactId>cloudinary-http44</artifactId>
-			<version>1.38.0</version>
-		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -80,6 +75,7 @@
 			<artifactId>jjwt-api</artifactId>
 			<version>0.12.5</version>
 		</dependency>
+
 	</dependencies>
 
 	<build>

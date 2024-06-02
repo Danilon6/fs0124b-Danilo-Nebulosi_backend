@@ -1,6 +1,7 @@
 package it.epicode.DevicesManagment.businesslayer.services.interfaces;
 
 import it.epicode.DevicesManagment.businesslayer.services.dto.EmployeeDTO;
+import it.epicode.DevicesManagment.businesslayer.services.dto.LoginResponseDto;
 import it.epicode.DevicesManagment.businesslayer.services.dto.RegisteredEmployeeDto;
 import it.epicode.DevicesManagment.datalayer.entities.Employee;
 
@@ -19,7 +20,7 @@ public interface EmployeeService {
 
     RegisteredEmployeeDto save(EmployeeDTO e);
 
-    Optional<RegisteredEmployeeDto> login(String username, String password);
+    Optional<LoginResponseDto> login(String username, String password);
 
     RegisteredEmployeeDto update(Long id, Employee e);
 
